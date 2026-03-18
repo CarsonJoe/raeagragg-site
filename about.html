@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Raea Gragg — About</title>
+  <meta name="description" content="About Raea Gragg, contact info, and social links." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">Raea Gragg<small>Author • Illustrator • Animator</small></div>
+      <nav aria-label="Primary">
+        <a href="./index.html">Home</a>
+        <a href="./books.html">Books</a>
+        <a href="./art.html">Art</a>
+        <a href="./projects.html">Upcoming</a>
+        <a class="active" href="./about.html">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <h2>About Me</h2>
+        <p class="sub">Author, illustrator, and animator focused on narrative-first visual storytelling.</p>
+
+        <div class="split">
+          <article class="about-box">
+            <p>I build story worlds from concept through final visuals. My work spans books, illustration, and motion — always centered on character, tone, and emotional clarity.</p>
+            <div class="contact-row">
+              <a class="link-pill" href="mailto:hello@raeagragg.com">Contact Me</a>
+              <a class="link-pill" href="#">Social Media</a>
+            </div>
+          </article>
+
+          <article class="tile">
+            <img class="thumb" src="./assets/author-portrait.jpeg" alt="Raea portrait artwork" />
+            <div class="content">
+              <h3>Studio Profile</h3>
+              <p>Story-led work for readers, editors, and creative collaborators.</p>
+            </div>
+          </article>
+        </div>
+
+        <article class="about-box">
+          <p><strong>Current focus:</strong> expanding the books slate while developing private preview channels for upcoming titles and visual projects.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Raea Gragg</div>
+      <div><a href="./index.html">Back to Home</a></div>
+    </footer>
+  </div>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

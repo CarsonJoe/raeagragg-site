@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Raea Gragg — Art</title>
+  <meta name="description" content="Art galleries: traditional, digital, and wood/ceramic." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">Raea Gragg<small>Author • Illustrator • Animator</small></div>
+      <nav aria-label="Primary">
+        <a href="./index.html">Home</a>
+        <a href="./books.html">Books</a>
+        <a class="active" href="./art.html">Art</a>
+        <a href="./projects.html">Upcoming</a>
+        <a href="./about.html">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <h2>Art</h2>
+        <p class="sub">Three gallery lanes from your sitemap structure.</p>
+
+        <div class="art-grid">
+          <article class="tile">
+            <img class="thumb" src="./assets/art-traditional.jpg" alt="Traditional painting example" />
+            <div class="content">
+              <h3>Gallery 01</h3>
+              <p>Traditional oil & watercolor</p>
+            </div>
+          </article>
+
+          <article class="tile">
+            <img class="thumb" src="./assets/art-digital.jpeg" alt="Digital illustration example" />
+            <div class="content">
+              <h3>Gallery 02</h3>
+              <p>Digital illustration</p>
+            </div>
+          </article>
+
+          <article class="tile">
+            <img class="thumb" src="./assets/art-ceramic.jpg" alt="Wood and ceramic example" />
+            <div class="content">
+              <h3>Gallery 03</h3>
+              <p>Wood & ceramic work</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="split">
+          <div class="about-box">
+            <p>Each gallery can expand into its own dedicated page later. For now, this keeps the top-level site map clean and easy to navigate.</p>
+          </div>
+          <div class="about-box">
+            <p>Using scraped assets where beneficial: images on this page are pulled from the archived source set and optimized for layout consistency.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Raea Gragg</div>
+      <div><a href="./index.html">Back to Home</a></div>
+    </footer>
+  </div>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

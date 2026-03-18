@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Raea Gragg — Home</title>
+  <meta name="description" content="Home: books, art, upcoming projects, and about." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">Raea Gragg<small>Author • Illustrator • Animator</small></div>
+      <nav aria-label="Primary">
+        <a class="active" href="./index.html">Home</a>
+        <a href="./books.html">Books</a>
+        <a href="./art.html">Art</a>
+        <a href="./projects.html">Upcoming</a>
+        <a href="./about.html">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="Homepage intro">
+        <h1>Quietly bold storytelling.</h1>
+        <p class="lead">A focused portfolio hub for books, artwork, and in-progress projects. Built as a clean multi-page structure aligned to your sitemap.</p>
+        <div class="actions">
+          <a class="btn primary" href="./books.html">Explore Books</a>
+          <a class="btn secondary" href="./about.html">About Raea</a>
+        </div>
+
+        <div class="media-frame">
+          <video autoplay muted loop playsinline preload="metadata">
+            <source src="./file.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <div class="grid-4" aria-label="Primary paths">
+          <a class="card-link" href="./books.html"><span>Books</span><small>Middle grade, children’s, and YA titles</small></a>
+          <a class="card-link" href="./art.html"><span>Art</span><small>Traditional, digital, and ceramic galleries</small></a>
+          <a class="card-link" href="./projects.html"><span>Upcoming Projects</span><small>Private previews and in-progress work</small></a>
+          <a class="card-link" href="./about.html"><span>About Me</span><small>Bio, contact, and social channels</small></a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Raea Gragg</div>
+      <div>Multi-page version based on sitemap structure</div>
+    </footer>
+  </div>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

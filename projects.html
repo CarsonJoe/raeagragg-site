@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Raea Gragg — Upcoming Projects</title>
+  <meta name="description" content="Upcoming projects and private previews." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">Raea Gragg<small>Author • Illustrator • Animator</small></div>
+      <nav aria-label="Primary">
+        <a href="./index.html">Home</a>
+        <a href="./books.html">Books</a>
+        <a href="./art.html">Art</a>
+        <a class="active" href="./projects.html">Upcoming</a>
+        <a href="./about.html">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <h2>Upcoming Projects</h2>
+        <p class="sub">Private work-in-progress previews and development tracks.</p>
+
+        <article class="panel">
+          <h3>Password Access</h3>
+          <ul>
+            <li><strong>Cicada Rising</strong> — concept art, script notes, and preview sequence.</li>
+            <li><strong>Pumpkin</strong> — character boards and visual direction samples.</li>
+          </ul>
+        </article>
+
+        <div class="split">
+          <div class="about-box">
+            <p><strong>How this page is meant to work:</strong> share private links with readers, editors, or collaborators while keeping public navigation simple.</p>
+          </div>
+          <div class="about-box">
+            <p><strong>Next step:</strong> wire real password-protected pages or an external private gallery workflow when you're ready.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Raea Gragg</div>
+      <div><a href="./index.html">Back to Home</a></div>
+    </footer>
+  </div>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
