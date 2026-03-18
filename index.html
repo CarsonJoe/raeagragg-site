@@ -25,17 +25,23 @@
 
     <main>
       <section class="hero" aria-label="Homepage intro">
-        <h1>Quietly bold storytelling.</h1>
-        <p class="lead">A focused portfolio hub for books, artwork, and in-progress projects. Built as a clean multi-page structure aligned to your sitemap.</p>
-        <div class="actions">
-          <a class="btn primary" href="./books.html">Explore Books</a>
-          <a class="btn secondary" href="./about.html">About Raea</a>
-        </div>
+        <div class="split">
+          <div>
+            <h1>Quietly bold storytelling.</h1>
+            <p class="lead">A focused portfolio hub for books, artwork, and in-progress projects. Built as a clean multi-page structure aligned to your sitemap.</p>
+            <div class="actions">
+              <a class="btn primary" href="./books.html">Explore Books</a>
+              <a class="btn secondary" href="./about.html">About Raea</a>
+            </div>
+          </div>
 
-        <div class="media-frame">
-          <video autoplay muted loop playsinline preload="metadata">
-            <source src="./file.mp4" type="video/mp4" />
-          </video>
+          <article class="tile" aria-label="Raea portrait">
+            <img class="thumb" src="./assets/author-portrait.jpeg" alt="Portrait of Raea" />
+            <div class="content">
+              <h3>Featured</h3>
+              <p>Raea Gragg</p>
+            </div>
+          </article>
         </div>
 
         <div class="grid-4" aria-label="Primary paths">
@@ -43,6 +49,16 @@
           <a class="card-link" href="./art.html"><span>Art</span><small>Traditional, digital, and ceramic galleries</small></a>
           <a class="card-link" href="./projects.html"><span>Upcoming Projects</span><small>Private previews and in-progress work</small></a>
           <a class="card-link" href="./about.html"><span>About Me</span><small>Bio, contact, and social channels</small></a>
+        </div>
+      </section>
+
+      <section aria-label="Featured video">
+        <h2>Featured Reel</h2>
+        <p class="sub">Latest motion preview and visual snippets.</p>
+        <div class="media-frame">
+          <video autoplay muted loop playsinline preload="metadata">
+            <source src="./file.mp4" type="video/mp4" />
+          </video>
         </div>
       </section>
     </main>
