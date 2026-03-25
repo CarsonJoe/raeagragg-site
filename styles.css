@@ -32,7 +32,7 @@ header{
   line-height:1;
 }
 .logo small{
-  display:block;margin-top:6px;
+  display:block;margin-top:10px;
   font-family:"Albert Sans",sans-serif;
   font-size:.67rem;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);
 }
@@ -74,7 +74,7 @@ section h2{margin:0;font-family:"EB Garamond",serif;font-size:2.2rem;font-weight
 .link-pill{display:inline-flex;align-items:center;min-height:38px;padding:0 14px;border:1px solid var(--line);font-size:.72rem;text-transform:uppercase;letter-spacing:.12em}
 .link-pill:hover{border-color:var(--ink)}
 footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s3);color:var(--muted);font-size:.84rem;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.media-frame{margin-top:var(--s4);border:1px solid var(--line);background:#e7e0d3;padding:12px;max-width:560px}
+.media-frame{margin-top:var(--s4);border:1px solid var(--line);background:#e7e0d3;padding:12px;}
 .media-frame video{width:100%;display:block}
 @media (max-width:980px){
   .grid-4{grid-template-columns:1fr 1fr}
