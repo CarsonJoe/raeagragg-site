@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta Crest Gardens</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1e1e1e;
+            --accent-gold: #c2b280;
+            --text-white: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-white);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Main Container */
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            background-color: var(--bg-dark);
+            margin: 0;
+            padding: 40px;
+            border-radius: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+        }
+
+        nav a {
+            color: var(--text-white);
+            text-decoration: none;
+        }
+
+        .nav-divider {
+            color: rgba(255,255,255,0.3);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-reserve {
+            background-color: #a39371;
+            color: #1e1e1e;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .search-circle {
+            width: 35px;
+            height: 35px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 100px 0 60px 0;
+            text-align: center;
+        }
+
+        .hero-top-labels {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 8rem;
+            line-height: 0.85;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .hero-subtitle {
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .hero-side-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: -40px;
+            padding: 0 20px;
+        }
+
+        .availability {
+            text-align: left;
+            max-width: 150px;
+        }
+
+        .availability p {
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            border: 1px solid #4a4a4a;
+            padding: 15px 25px;
+            border-radius: 40px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .location-info {
+            text-align: right;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Plants Grid */
+        .plant-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 60px;
+        }
+
+        .plant-card {
+            height: 500px;
+            border-radius: 30px;
+            overflow: hidden;
+            background-color: #111;
+        }
+
+        .plant-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.1) brightness(0.9);
+        }
+
+        /* Icons placeholder */
+        .icon { width: 14px; height: 14px; display: inline-block; border: 1px solid white; border-radius: 2px; vertical-align: middle; margin-right: 5px; }
+
+        @media (max-width: 1024px) {
+            .hero-title { font-size: 5rem; }
+            .plant-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24"><path d="M12,2L10.5,8H13.5L12,2M16,6L14,10H18L16,6M8,6L6,10H10L8,6M4,12L2,16H6L4,12M20,12L18,16H22L20,12M12,12L10,22H14L12,12Z" /></svg>
+                ALTA GARDENS
+            </div>
+            <nav>
+                <a href="#">PLANTS</a>
+                <span class="nav-divider">|</span>
+                <a href="#">VISIT</a>
+                <span class="nav-divider">|</span>
+                <a href="#">CONTACT</a>
+            </nav>
+            <div class="header-actions">
+                <a href="#" class="btn-reserve">SCHEDULE A VISIT</a>
+                <div class="search-circle">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <main>
+            <section class="hero">
+                <div class="hero-top-labels">
+                    <span><span class="icon"></span> Estates</span>
+                    <span>Groups <span class="icon"></span></span>
+                </div>
+                
+                <h1 class="hero-title">
+                    ALTA CREST<br>GARDENS
+                </h1>
+                <p class="hero-subtitle">Premium Plant Curator & Luxury Landscaping</p>
+
+                <div class="hero-side-content">
+                    <div class="availability">
+                        <p>CALL FOR AVAILABILITY</p>
+                        <a href="#" class="btn-outline">VIEW LOCATIONS</a>
+                    </div>
+                    <div class="location-info">
+                        RICHMOND +<br>FREMONT
+                    </div>
+                </div>
+            </section>
+
+            <!-- Grid Section -->
+            <section class="plant-grid">
+                <div class="plant-card">
+                    <img src="https://images.unsplash.com/photo-1509232306240-272e25d287bc?auto=format&fit=crop&q=80&w=1000" alt="Variegated Agave">
+                </div>
+                <div class="plant-card">
+                    <img src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&q=80&w=1000" alt="Sharp Green Succulent">
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>

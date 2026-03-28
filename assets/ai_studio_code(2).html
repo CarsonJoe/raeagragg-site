@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta Crest Gardens</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-beige: #d7c5ae;
+            --light-pill: #ece7e1;
+            --text-dark: #1a1a1a;
+            --radius: 40px;
+        }
+
+        /* Removed outer background and padding */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #ffffff; 
+            color: var(--text-dark); 
+            overflow-x: hidden;
+        }
+
+        /* Container now spans full width without shadow */
+        .container { 
+            width: 100%; 
+            margin: 0 auto; 
+            background: white; 
+        }
+
+        /* Navigation */
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 40px 60px; 
+            position: absolute; 
+            width: 100%; 
+            z-index: 10; 
+        }
+        .nav-left { display: flex; gap: 50px; align-items: center; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
+        .nav-links { display: flex; gap: 40px; font-size: 14px; font-weight: 500; opacity: 0.8; }
+
+        /* Hero Section */
+        .hero { 
+            display: flex; 
+            height: 80vh; 
+            position: relative; 
+            padding: 20px 20px 10px 20px; /* Slight gap from screen edge for the rounded look */
+        }
+        
+        .hero-left { 
+            flex: 1.1; 
+            background: var(--bg-beige); 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            padding-left: 80px; 
+            border-radius: var(--radius) 0 0 var(--radius);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Plant illustration placeholder for left side */
+        .hero-left::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60%;
+            height: 80%;
+            background-image: url('https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=600&q=80');
+            background-repeat: no-repeat;
+            background-position: bottom right;
+            background-size: contain;
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        .hero-right { 
+            flex: 1; 
+            border-radius: 0 var(--radius) var(--radius) 0;
+            overflow: hidden;
+        }
+        .hero-right img { width: 100%; height: 100%; object-fit: cover; }
+
+        .hero-title { 
+            font-family: 'Playfair Display', serif; 
+            font-size: clamp(60px, 8vw, 120px); 
+            line-height: 0.85; 
+            font-weight: 500; 
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Floating Phone Pill */
+        .phone-pill {
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            background: var(--light-pill); 
+            padding: 30px 70px; 
+            border-radius: 100px;
+            display: flex; 
+            align-items: center; 
+            gap: 25px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            z-index: 20;
+        }
+        .pill-label { 
+            writing-mode: vertical-rl; 
+            transform: rotate(180deg); 
+            font-size: 11px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            opacity: 0.5; 
+        }
+        .phone-number { font-size: 48px; font-weight: 500; letter-spacing: -1px; }
+
+        /* Bottom Cards Grid */
+        .grid-footer { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 15px; 
+            padding: 10px 20px 20px 20px; 
+        }
+        .card { 
+            height: 280px; 
+            border-radius: 35px; 
+            padding: 35px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between;
+            background: #e6ddd1; 
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        .card:hover { transform: scale(0.98); opacity: 0.9; }
+        
+        .card.image-card { padding: 0; overflow: hidden; position: relative; }
+        .card.image-card img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .card-label { font-size: 24px; font-weight: 500; line-height: 1.1; }
+        .overlay-text { position: absolute; top: 35px; left: 35px; font-size: 24px; font-weight: 500; z-index: 2; }
+
+        /* Tablet/Mobile adjustments */
+        @media (max-width: 1100px) {
+            .hero-title { font-size: 70px; }
+            .phone-number { font-size: 32px; }
+            .phone-pill { padding: 20px 40px; }
+            .grid-footer { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 20px; }
+            .hero { flex-direction: column; height: auto; }
+            .hero-left, .hero-right { border-radius: var(--radius); height: 500px; }
+            .hero-left { padding-left: 30px; margin-bottom: 10px; }
+            .phone-pill { width: 90%; position: relative; top: 0; left: 0; transform: none; margin: 20px auto; }
+            .grid-footer { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <div class="nav-left">
+            <div class="logo">Alta crest</div>
+            <div class="nav-links">
+                <span>About Nursery</span>
+                <span>Retail Price</span>
+            </div>
+        </div>
+        <div class="nav-right">
+            <div style="background: rgba(255,255,255,0.9); padding: 12px 25px; border-radius: 30px; font-size: 14px; font-weight: 500; border: 1px solid rgba(0,0,0,0.05);">Orders</div>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="hero-left">
+            <h1 class="hero-title">Alta<br>Crest<br>Gardens</h1>
+        </div>
+        <div class="hero-right">
+            <img src="https://images.unsplash.com/photo-1459156212016-c812468e2115?auto=format&fit=crop&w=1200&q=80" alt="Agave plant close up">
+        </div>
+
+        <!-- Central Action Pill -->
+        <div class="phone-pill">
+            <div class="pill-label">Retail</div>
+            <div class="phone-number">925 325-PALM</div>
+        </div>
+    </main>
+
+    <section class="grid-footer">
+        <div class="card">
+            <span class="card-label">Plant<br>Library</span>
+            <span style="font-size: 13px; font-weight: 500; opacity: 0.6;">EXPLORE COLLECTION</span>
+        </div>
+        <div class="card image-card">
+            <div class="overlay-text" style="color: #fff;">New<br>Arrivals</div>
+            <img src="https://images.unsplash.com/photo-1520302630591-fd1c66ed11ad?auto=format&fit=crop&w=600&q=80" alt="New plants">
+        </div>
+        <div class="card" style="background: #efefef;">
+            <span class="card-label">Plant Stories</span>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity: 0.4;">
+                <path d="M12 22C12 22 20 18 20 12V4L12 2L4 4V12C4 18 12 22 12 22Z" />
+            </svg>
+        </div>
+        <div class="card" style="background: #d4c4b2;">
+            <span class="card-label">Visit</span>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity: 0.4; align-self: flex-end;">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+            </svg>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>
