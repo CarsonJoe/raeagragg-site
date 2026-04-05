@@ -61,11 +61,25 @@ section h2{margin:0;font-family:"EB Garamond",serif;font-size:2.2rem;font-weight
 .item{display:flex;gap:12px;align-items:flex-start;border-top:1px solid var(--line);padding-top:12px}
 .num{font-size:.78rem;color:var(--accent);min-width:22px;padding-top:3px}
 .book-grid,.art-grid{margin-top:var(--s3);display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.art-grid-4{grid-template-columns:repeat(4,1fr)}
 .tile{border:1px solid var(--line);background:var(--panel);overflow:hidden}
 .tile .content{padding:14px}
 .tile h3{margin:0;font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
 .tile p{margin:8px 0 0;font-family:"EB Garamond",serif;font-size:1.25rem;line-height:1.15}
 .thumb{aspect-ratio:4/5;object-fit:cover;width:100%}
+.gallery-hero{margin-top:var(--s3);display:grid;grid-template-columns:2fr 1fr;gap:12px}
+.gallery-lead{margin:0;border:1px solid var(--line);background:var(--panel)}
+.gallery-lead img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.gallery-meta{display:grid;gap:12px}
+.stat{border:1px solid var(--line);background:var(--panel);padding:16px}
+.stat strong{display:block;font-family:"EB Garamond",serif;font-size:2rem;line-height:1}
+.stat span{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.mosaic-grid{margin-top:var(--s3);display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mosaic-item{margin:0;border:1px solid var(--line);background:var(--panel);overflow:hidden}
+.mosaic-item .thumb{aspect-ratio:4/3}
+.mosaic-item.tall .thumb{aspect-ratio:4/5}
+.mosaic-item.wide{grid-column:span 2}
+.mosaic-item figcaption{padding:10px 12px;font-size:.82rem;color:var(--muted)}
 .about-box,.panel{margin-top:var(--s3);border:1px solid var(--line);background:var(--panel);padding:20px}
 .panel h3{margin:0;font-size:.76rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}
 .panel ul{margin:10px 0 0;padding-left:18px}
@@ -79,10 +93,13 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 @media (max-width:980px){
   .grid-4{grid-template-columns:1fr 1fr}
   .split{grid-template-columns:1fr}
-  .book-grid,.art-grid{grid-template-columns:1fr}
+  .gallery-hero{grid-template-columns:1fr}
+  .mosaic-grid{grid-template-columns:1fr 1fr}
+  .mosaic-item.wide{grid-column:span 1}
+  .book-grid,.art-grid,.art-grid-4{grid-template-columns:1fr 1fr}
 }
 @media (max-width:700px){
   nav{display:none}
-  .grid-4{grid-template-columns:1fr}
+  .grid-4,.mosaic-grid,.book-grid,.art-grid,.art-grid-4{grid-template-columns:1fr}
   .wrap{padding-top:24px}
 }
