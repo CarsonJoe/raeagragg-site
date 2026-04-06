@@ -116,13 +116,17 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .duo-covers{margin-top:22px;display:flex;flex-direction:column;gap:28px}
 .duo-covers .flow-item{padding:12px}
 
-.book-section{margin-top:var(--s5);padding-top:var(--s3);border-top:1px solid var(--line)}
-.book-section h3{margin:0;font-family:"EB Garamond",serif;font-size:1.8rem;font-weight:500}
-.book-section .book-note{margin-top:8px;color:var(--muted);max-width:62ch}
-.h-scroll{margin-top:16px;display:flex;gap:14px;overflow-x:auto;padding:2px 2px 8px;scroll-snap-type:x proximity}
-.h-card{flex:0 0 min(78vw,420px);border:1px solid var(--line);background:var(--panel);padding:10px;scroll-snap-align:start}
-.h-card img{width:100%;height:auto;max-height:72vh;object-fit:contain;background:#eee8dc}
-.h-card figcaption{margin-top:8px;font-size:.76rem;color:var(--muted)}
+.book-section{margin-top:var(--s3);border-top:1px solid var(--line);background:var(--panel)}
+.book-section summary{list-style:none;cursor:pointer;padding:16px 18px;font-family:"EB Garamond",serif;font-size:1.7rem;display:flex;align-items:center;justify-content:space-between}
+.book-section summary::-webkit-details-marker{display:none}
+.book-section summary::after{content:'+';font-family:"Albert Sans",sans-serif;font-size:1rem;color:var(--muted)}
+.book-section[open] summary::after{content:'−'}
+.book-section .book-note{padding:0 18px 6px;color:var(--muted);max-width:62ch}
+.book-section .book-body{padding:0 12px 12px}
+.h-scroll{margin-top:8px;display:flex;gap:14px;overflow-x:auto;padding:2px 6px 10px;scroll-snap-type:x proximity}
+.h-card{flex:0 0 min(80vw,540px);border:1px solid var(--line);background:#eee8dc;padding:8px;scroll-snap-align:start}
+.h-card img{width:100%;height:auto;max-height:78vh;object-fit:contain;background:#eee8dc}
+.h-card figcaption{display:none}
 
 @media (max-width:980px){
   .grid-4{grid-template-columns:1fr 1fr}
