@@ -90,6 +90,32 @@ section h2{margin:0;font-family:"EB Garamond",serif;font-size:2.2rem;font-weight
 footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s3);color:var(--muted);font-size:.84rem;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .media-frame{margin-top:var(--s4);border:1px solid var(--line);background:#e7e0d3;padding:12px;}
 .media-frame video{width:100%;display:block}
+
+/* Scroll-story layouts */
+.story-intro{margin-top:var(--s4);max-width:68ch}
+.flow-gallery{margin-top:var(--s5);display:flex;flex-direction:column;gap:38px}
+.flow-item{background:var(--panel);border:1px solid var(--line);padding:10px}
+.flow-item img{width:100%;height:auto;display:block}
+.flow-item p{margin:10px 2px 2px;color:var(--muted);font-size:.86rem}
+.flow-item.left{width:74%;margin-right:auto;transform:rotate(-.4deg)}
+.flow-item.right{width:74%;margin-left:auto;transform:rotate(.5deg)}
+.flow-item.center{width:86%;margin:0 auto}
+.flow-item.narrow{width:58%}
+.flow-item.wide{width:94%;margin:0 auto}
+.flow-item.offset-up{margin-top:-18px}
+.flow-item.offset-down{margin-top:14px}
+
+.chapter{margin-top:var(--s6);padding-top:var(--s3);border-top:1px solid var(--line)}
+.chapter-kicker{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.chapter h2{margin-top:8px}
+.story-text{max-width:64ch;color:var(--ink)}
+.char-strip{margin-top:22px;display:flex;gap:14px;overflow:auto;padding-bottom:6px}
+.char-strip figure{flex:0 0 220px;margin:0;border:1px solid var(--line);background:var(--panel);padding:8px}
+.char-strip img{width:100%;height:auto}
+.char-strip figcaption{margin-top:8px;font-size:.78rem;color:var(--muted)}
+.duo-covers{margin-top:22px;display:flex;flex-direction:column;gap:28px}
+.duo-covers .flow-item{padding:12px}
+
 @media (max-width:980px){
   .grid-4{grid-template-columns:1fr 1fr}
   .split{grid-template-columns:1fr}
@@ -97,9 +123,11 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
   .mosaic-grid{grid-template-columns:1fr 1fr}
   .mosaic-item.wide{grid-column:span 1}
   .book-grid,.art-grid,.art-grid-4{grid-template-columns:1fr 1fr}
+  .flow-item.left,.flow-item.right,.flow-item.center,.flow-item.narrow,.flow-item.wide{width:100%;margin-left:0;margin-right:0;transform:none}
 }
 @media (max-width:700px){
   nav{display:none}
   .grid-4,.mosaic-grid,.book-grid,.art-grid,.art-grid-4{grid-template-columns:1fr}
+  .char-strip figure{flex-basis:170px}
   .wrap{padding-top:24px}
 }
