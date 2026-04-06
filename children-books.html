@@ -29,31 +29,31 @@
         <p class="story-intro">Choose a cover to open the full book gallery.</p>
 
         <div class="book-grid-covers">
-          <button class="cover-button" data-book="4-paws">
+          <button type="button" class="cover-button" onclick="openBook('4-paws')">
             <span class="sr-only">Open 4 Paws</span>
             <img src="./assets/Children%20books/4%20paws/four%20paws%20front%20cover.jpg" alt="4 Paws cover" />
             <span class="open-hint">Open</span>
           </button>
 
-          <button class="cover-button" data-book="little-coconut-island">
+          <button type="button" class="cover-button" onclick="openBook('little-coconut-island')">
             <span class="sr-only">Open Little Coconut Island</span>
             <img src="./assets/Children%20books/little%20coconut%20island/Lilcoco%20jpegs%20for%20web.jpg" alt="Little Coconut Island cover" />
             <span class="open-hint">Open</span>
           </button>
 
-          <button class="cover-button" data-book="manu-o-ku">
+          <button type="button" class="cover-button" onclick="openBook('manu-o-ku')">
             <span class="sr-only">Open The Secret of the Manu-o-ku</span>
             <img src="./assets/Children%20books/The%20secret%20of%20the%20Manu-o-ku/507c35_890c5b29d1724014be04a3e95d13f7b5~mv2.jpg" alt="The Secret of the Manu-o-ku cover" />
             <span class="open-hint">Open</span>
           </button>
 
-          <button class="cover-button" data-book="dogs">
+          <button type="button" class="cover-button" onclick="openBook('dogs')">
             <span class="sr-only">Open Dogs</span>
             <img src="./assets/Children%20books/dogs/507c35_25c6b22866704e4883ec792fd40107c9~mv2_d_3300_2550_s_4_2.jpg" alt="Dogs cover" />
             <span class="open-hint">Open</span>
           </button>
 
-          <button class="cover-button" data-book="nibbler">
+          <button type="button" class="cover-button" onclick="openBook('nibbler')">
             <span class="sr-only">Open Nibbler</span>
             <img src="./assets/Children%20books/Nibbler/1.jpg" alt="Nibbler cover" />
             <span class="open-hint">Open</span>
@@ -160,6 +160,7 @@
       document.body.style.overflow = 'hidden';
       renderModal();
     }
+    window.openBook = openModal;
     function closeModal() {
       modal.classList.remove('open');
       modal.setAttribute('aria-hidden','true');
@@ -168,9 +169,7 @@
     function nextImg() { const len = books[activeBook].images.length; index = (index + 1) % len; renderModal(); }
     function prevImg() { const len = books[activeBook].images.length; index = (index - 1 + len) % len; renderModal(); }
 
-    document.querySelectorAll('.cover-button').forEach(btn => {
-      btn.addEventListener('click', () => openModal(btn.dataset.book));
-    });
+    // click handlers are attached inline on cover buttons
     document.getElementById('modalClose').addEventListener('click', closeModal);
     document.getElementById('modalNext').addEventListener('click', nextImg);
     document.getElementById('modalPrev').addEventListener('click', prevImg);
