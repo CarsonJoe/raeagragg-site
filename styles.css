@@ -115,6 +115,8 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .char-strip figcaption{margin-top:8px;font-size:.78rem;color:var(--muted)}
 .duo-covers{margin-top:22px;display:flex;flex-direction:column;gap:28px}
 .duo-covers .flow-item{padding:12px}
+.mup-cover-wrap{display:flex;justify-content:center;align-items:center}
+.mup-cover{width:min(320px,60vw);height:auto;image-rendering:auto}
 
 .book-grid-covers{margin-top:var(--s4);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .cover-tile{display:flex;flex-direction:column;gap:8px}
