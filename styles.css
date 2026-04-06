@@ -116,6 +116,14 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .duo-covers{margin-top:22px;display:flex;flex-direction:column;gap:28px}
 .duo-covers .flow-item{padding:12px}
 
+.book-section{margin-top:var(--s5);padding-top:var(--s3);border-top:1px solid var(--line)}
+.book-section h3{margin:0;font-family:"EB Garamond",serif;font-size:1.8rem;font-weight:500}
+.book-section .book-note{margin-top:8px;color:var(--muted);max-width:62ch}
+.h-scroll{margin-top:16px;display:flex;gap:14px;overflow-x:auto;padding:2px 2px 8px;scroll-snap-type:x proximity}
+.h-card{flex:0 0 min(78vw,420px);border:1px solid var(--line);background:var(--panel);padding:10px;scroll-snap-align:start}
+.h-card img{width:100%;height:auto;max-height:72vh;object-fit:contain;background:#eee8dc}
+.h-card figcaption{margin-top:8px;font-size:.76rem;color:var(--muted)}
+
 @media (max-width:980px){
   .grid-4{grid-template-columns:1fr 1fr}
   .split{grid-template-columns:1fr}
