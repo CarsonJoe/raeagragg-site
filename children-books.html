@@ -194,6 +194,13 @@
         if (e.deltaY > 0) nextImg(); else prevImg();
       }
     }, { passive: false });
+
+    let touchStartX = 0;
+    modal.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    modal.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) { if (dx < 0) nextImg(); else prevImg(); }
+    });
   </script>
 </body>
 </html>
