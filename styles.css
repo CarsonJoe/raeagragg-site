@@ -142,6 +142,15 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .modal-title{position:absolute;top:20px;left:20px;color:#f3efe6;font-family:"EB Garamond",serif;font-size:1.4rem}
 .modal-count{position:absolute;bottom:20px;left:20px;color:#cfc7b8;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
 
+.project-cover{margin-top:var(--s3);max-width:520px;border:1px solid var(--line);background:var(--panel);padding:10px}
+.project-cover img{width:100%;height:auto;display:block}
+.project-synopsis{margin-top:var(--s3);max-width:60ch;color:var(--ink);font-family:"EB Garamond",serif;font-size:1.15rem;line-height:1.65}
+.concept-grid{margin-top:var(--s4);display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.concept-grid figure{margin:0;border:1px solid var(--line);background:var(--panel);padding:8px}
+.concept-grid img{width:100%;height:auto;display:block}
+.concept-grid figcaption{margin-top:6px;font-size:.78rem;color:var(--muted)}
+.project-cta{margin-top:var(--s4)}
+
 .collection-strip{margin-top:var(--s3);display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
 .collection-strip figure{flex:0 0 260px;margin:0;border:1px solid var(--line);background:var(--panel);padding:8px;cursor:pointer;scroll-snap-align:start;transition:border-color .2s ease}
 .collection-strip figure:hover{border-color:var(--ink)}
@@ -162,6 +171,7 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
   nav{display:none}
   .grid-4,.mosaic-grid,.book-grid,.art-grid,.art-grid-4,.book-grid-covers{grid-template-columns:1fr}
   .char-strip figure{flex-basis:170px}
+  .concept-grid{grid-template-columns:1fr}
   .collection-strip figure{flex:0 0 200px}
   .collection-strip img{height:160px}
   .book-modal-inner{display:block;width:100%;text-align:center}
