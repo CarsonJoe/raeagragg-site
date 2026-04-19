@@ -37,7 +37,7 @@ header{
   font-size:.67rem;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);
 }
 nav{display:flex;gap:16px;flex-wrap:wrap}
-.nav-toggle{display:none;appearance:none;border:none;background:transparent;padding:4px;cursor:pointer;flex-direction:column;justify-content:center;gap:5px}
+.nav-toggle{display:none;-webkit-appearance:none;appearance:none;border:none;background:transparent;padding:8px;cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:5px;min-width:38px;min-height:38px}
 .nav-toggle span{display:block;width:22px;height:2px;background:var(--ink);transition:transform .2s,opacity .2s}
 .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;transform:scaleX(0)}
