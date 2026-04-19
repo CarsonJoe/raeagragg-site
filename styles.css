@@ -182,8 +182,9 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
   .grid-4,.mosaic-grid,.book-grid,.art-grid,.art-grid-4,.book-grid-covers{grid-template-columns:1fr}
   .char-strip figure{flex-basis:170px}
   .hero{margin-top:0;padding-top:var(--s3)}
+  .hero h1{display:none}
   .hero .split > article{order:-1}
-  .hero .split > article .thumb{aspect-ratio:16/9}
+  .hero .split > article .thumb{aspect-ratio:4/3}
   .concept-grid{grid-template-columns:1fr}
   .collection-strip figure{flex:0 0 200px}
   .collection-strip img{height:160px}
