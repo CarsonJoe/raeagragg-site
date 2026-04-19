@@ -162,9 +162,13 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
   nav{display:none}
   .grid-4,.mosaic-grid,.book-grid,.art-grid,.art-grid-4,.book-grid-covers{grid-template-columns:1fr}
   .char-strip figure{flex-basis:170px}
-  .book-modal-inner{grid-template-columns:44px auto 44px;max-width:calc(94vw - 8px);max-height:calc(84vh + 24px)}
-  .book-modal-stage{padding:12px}
-  .book-modal-stage img{max-width:82vw;max-height:74vh}
-  .modal-nav{height:52px}
+  .collection-strip figure{flex:0 0 200px}
+  .collection-strip img{height:160px}
+  .book-modal-inner{position:relative;display:flex;align-items:center;justify-content:center;max-width:100vw;max-height:100vh}
+  .book-modal-stage{padding:10px;border:1px solid #444;background:#111}
+  .book-modal-stage img{max-width:90vw;max-height:78vh}
+  .modal-nav{position:absolute;top:50%;transform:translateY(-50%);height:64px;width:40px;font-size:1.1rem;background:rgba(10,10,10,.72);border:1px solid #555}
+  #modalPrev{left:4px}
+  #modalNext{right:4px}
   .wrap{padding-top:24px}
 }

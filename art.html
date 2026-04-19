@@ -81,32 +81,7 @@
 
       <section>
         <p class="section-kicker">Project Collection</p>
-        <h2>Cicada Rising</h2>
-        <p class="story-intro">Concept art and development illustrations for Cicada Rising. Scroll to browse — click any image to open full view.</p>
-
-        <div class="collection-strip">
-          <figure onclick="openCollection('cicada', 0)">
-            <img src="./assets/cicada/IMG_2950.jpeg" alt="Cicada Rising concept art 1" />
-          </figure>
-          <figure onclick="openCollection('cicada', 1)">
-            <img src="./assets/cicada/IMG_2951.jpeg" alt="Cicada Rising concept art 2" />
-          </figure>
-          <figure onclick="openCollection('cicada', 2)">
-            <img src="./assets/cicada/IMG_2952.jpeg" alt="Cicada Rising concept art 3" />
-          </figure>
-          <figure onclick="openCollection('cicada', 3)">
-            <img src="./assets/cicada/IMG_2953.jpeg" alt="Cicada Rising concept art 4" />
-          </figure>
-          <figure onclick="openCollection('cicada', 4)">
-            <img src="./assets/cicada/IMG_2954.jpeg" alt="Cicada Rising concept art 5" />
-          </figure>
-        </div>
-      </section>
-
-      <section>
-        <p class="section-kicker">Project Collection</p>
         <h2>Banana Slugs</h2>
-        <p class="story-intro">Illustrations and studies from the Banana Slugs project. Scroll to browse — click any image to open full view.</p>
 
         <div class="collection-strip">
           <figure onclick="openCollection('banana-slugs', 0)">
@@ -170,16 +145,6 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     const collections = {
-      'cicada': {
-        title: 'Cicada Rising',
-        images: [
-          './assets/cicada/IMG_2950.jpeg',
-          './assets/cicada/IMG_2951.jpeg',
-          './assets/cicada/IMG_2952.jpeg',
-          './assets/cicada/IMG_2953.jpeg',
-          './assets/cicada/IMG_2954.jpeg'
-        ]
-      },
       'banana-slugs': {
         title: 'Banana Slugs',
         images: [
@@ -260,6 +225,13 @@
         if (e.deltaY > 0) nextImg(); else prevImg();
       }
     }, { passive: false });
+
+    let touchStartX = 0;
+    modal.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    modal.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) { if (dx < 0) nextImg(); else prevImg(); }
+    });
   </script>
 </body>
 </html>
