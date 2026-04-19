@@ -181,7 +181,7 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
   nav[aria-label="Primary"] a:last-child{border-bottom:none}
   .grid-4,.mosaic-grid,.book-grid,.art-grid,.art-grid-4,.book-grid-covers{grid-template-columns:1fr}
   .char-strip figure{flex-basis:170px}
-  .hero{margin-top:0;padding-top:var(--s2)}
+  .hero{margin-top:0;padding-top:var(--s3)}
   .hero .split > article{order:-1}
   .hero .split > article .thumb{aspect-ratio:16/9}
   .concept-grid{grid-template-columns:1fr}
