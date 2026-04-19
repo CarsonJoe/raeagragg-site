@@ -142,6 +142,13 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .modal-title{position:absolute;top:20px;left:20px;color:#f3efe6;font-family:"EB Garamond",serif;font-size:1.4rem}
 .modal-count{position:absolute;bottom:20px;left:20px;color:#cfc7b8;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
 
+.collection-strip{margin-top:var(--s3);display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.collection-strip figure{flex:0 0 260px;margin:0;border:1px solid var(--line);background:var(--panel);padding:8px;cursor:pointer;scroll-snap-align:start;transition:border-color .2s ease}
+.collection-strip figure:hover{border-color:var(--ink)}
+.collection-strip img{width:100%;height:200px;object-fit:cover;display:block}
+.collection-strip figcaption{margin-top:6px;font-size:.76rem;color:var(--muted)}
+.section-kicker{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+
 @media (max-width:980px){
   .grid-4{grid-template-columns:1fr 1fr}
   .split{grid-template-columns:1fr}
