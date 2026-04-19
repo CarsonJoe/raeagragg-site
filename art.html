@@ -78,6 +78,75 @@
           </figure>
         </div>
       </section>
+
+      <section>
+        <p class="section-kicker">Project Collection</p>
+        <h2>Cicada Rising</h2>
+        <p class="story-intro">Concept art and development illustrations for Cicada Rising. Scroll to browse — click any image to open full view.</p>
+
+        <div class="collection-strip">
+          <figure onclick="openCollection('cicada', 0)">
+            <img src="./assets/cicada/IMG_2950.jpeg" alt="Cicada Rising concept art 1" />
+          </figure>
+          <figure onclick="openCollection('cicada', 1)">
+            <img src="./assets/cicada/IMG_2951.jpeg" alt="Cicada Rising concept art 2" />
+          </figure>
+          <figure onclick="openCollection('cicada', 2)">
+            <img src="./assets/cicada/IMG_2952.jpeg" alt="Cicada Rising concept art 3" />
+          </figure>
+          <figure onclick="openCollection('cicada', 3)">
+            <img src="./assets/cicada/IMG_2953.jpeg" alt="Cicada Rising concept art 4" />
+          </figure>
+          <figure onclick="openCollection('cicada', 4)">
+            <img src="./assets/cicada/IMG_2954.jpeg" alt="Cicada Rising concept art 5" />
+          </figure>
+        </div>
+      </section>
+
+      <section>
+        <p class="section-kicker">Project Collection</p>
+        <h2>Banana Slugs</h2>
+        <p class="story-intro">Illustrations and studies from the Banana Slugs project. Scroll to browse — click any image to open full view.</p>
+
+        <div class="collection-strip">
+          <figure onclick="openCollection('banana-slugs', 0)">
+            <img src="./assets/banana-slugs/IMG_2955.png" alt="Banana Slugs illustration 1" />
+          </figure>
+          <figure onclick="openCollection('banana-slugs', 1)">
+            <img src="./assets/banana-slugs/IMG_2956.png" alt="Banana Slugs illustration 2" />
+          </figure>
+          <figure onclick="openCollection('banana-slugs', 2)">
+            <img src="./assets/banana-slugs/IMG_2957.png" alt="Banana Slugs illustration 3" />
+          </figure>
+          <figure onclick="openCollection('banana-slugs', 3)">
+            <img src="./assets/banana-slugs/IMG_2958.png" alt="Banana Slugs illustration 4" />
+          </figure>
+          <figure onclick="openCollection('banana-slugs', 4)">
+            <img src="./assets/banana-slugs/IMG_2959.png" alt="Banana Slugs illustration 5" />
+          </figure>
+          <figure onclick="openCollection('banana-slugs', 5)">
+            <img src="./assets/banana-slugs/IMG_2960.png" alt="Banana Slugs illustration 6" />
+          </figure>
+          <figure onclick="openCollection('banana-slugs', 6)">
+            <img src="./assets/banana-slugs/IMG_2961.png" alt="Banana Slugs illustration 7" />
+          </figure>
+          <figure onclick="openCollection('banana-slugs', 7)">
+            <img src="./assets/banana-slugs/IMG_2962.png" alt="Banana Slugs illustration 8" />
+          </figure>
+          <figure onclick="openCollection('banana-slugs', 8)">
+            <img src="./assets/banana-slugs/IMG_2963.png" alt="Banana Slugs illustration 9" />
+          </figure>
+          <figure onclick="openCollection('banana-slugs', 9)">
+            <img src="./assets/banana-slugs/IMG_2964.png" alt="Banana Slugs illustration 10" />
+          </figure>
+          <figure onclick="openCollection('banana-slugs', 10)">
+            <img src="./assets/banana-slugs/IMG_2965.png" alt="Banana Slugs illustration 11" />
+          </figure>
+          <figure onclick="openCollection('banana-slugs', 11)">
+            <img src="./assets/banana-slugs/IMG_2966.png" alt="Banana Slugs illustration 12" />
+          </figure>
+        </div>
+      </section>
     </main>
 
     <footer>
@@ -85,6 +154,112 @@
       <div><a href="./index.html">Back to Home</a></div>
     </footer>
   </div>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+  <div id="artModal" class="book-modal" aria-hidden="true">
+    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-count" id="modalCount"></div>
+    <div class="book-modal-inner">
+      <button class="modal-nav" id="modalPrev" aria-label="Previous image">←</button>
+      <div class="book-modal-stage"><img id="modalImage" alt="" /></div>
+      <button class="modal-nav" id="modalNext" aria-label="Next image">→</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const collections = {
+      'cicada': {
+        title: 'Cicada Rising',
+        images: [
+          './assets/cicada/IMG_2950.jpeg',
+          './assets/cicada/IMG_2951.jpeg',
+          './assets/cicada/IMG_2952.jpeg',
+          './assets/cicada/IMG_2953.jpeg',
+          './assets/cicada/IMG_2954.jpeg'
+        ]
+      },
+      'banana-slugs': {
+        title: 'Banana Slugs',
+        images: [
+          './assets/banana-slugs/IMG_2955.png',
+          './assets/banana-slugs/IMG_2956.png',
+          './assets/banana-slugs/IMG_2957.png',
+          './assets/banana-slugs/IMG_2958.png',
+          './assets/banana-slugs/IMG_2959.png',
+          './assets/banana-slugs/IMG_2960.png',
+          './assets/banana-slugs/IMG_2961.png',
+          './assets/banana-slugs/IMG_2962.png',
+          './assets/banana-slugs/IMG_2963.png',
+          './assets/banana-slugs/IMG_2964.png',
+          './assets/banana-slugs/IMG_2965.png',
+          './assets/banana-slugs/IMG_2966.png'
+        ]
+      }
+    };
+
+    const modal = document.getElementById('artModal');
+    const modalImg = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalCount = document.getElementById('modalCount');
+    let activeCollection = null;
+    let index = 0;
+
+    function renderModal() {
+      const c = collections[activeCollection];
+      modalTitle.textContent = c.title;
+      modalImg.src = c.images[index];
+      modalImg.alt = `${c.title} image ${index + 1}`;
+      modalCount.textContent = `${index + 1} / ${c.images.length}`;
+    }
+
+    window.openCollection = function(key, startIndex) {
+      activeCollection = key;
+      index = startIndex;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      renderModal();
+    };
+
+    function closeModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function nextImg() {
+      const len = collections[activeCollection].images.length;
+      index = (index + 1) % len;
+      renderModal();
+    }
+
+    function prevImg() {
+      const len = collections[activeCollection].images.length;
+      index = (index - 1 + len) % len;
+      renderModal();
+    }
+
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('modalNext').addEventListener('click', nextImg);
+    document.getElementById('modalPrev').addEventListener('click', prevImg);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+    document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('open')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowRight') nextImg();
+      if (e.key === 'ArrowLeft') prevImg();
+    });
+
+    modal.addEventListener('wheel', (e) => {
+      if (!modal.classList.contains('open')) return;
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        if (e.deltaY > 0) nextImg(); else prevImg();
+      }
+    }, { passive: false });
+  </script>
 </body>
 </html>
