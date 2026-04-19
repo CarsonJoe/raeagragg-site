@@ -21,6 +21,7 @@
         <a class="active" href="./projects.html">Upcoming</a>
         <a href="./about.html">About</a>
       </nav>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </header>
 
     <main>
@@ -82,6 +83,8 @@
       <div><a href="./index.html">Back to Home</a></div>
     </footer>
   </div>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();
+  (function(){var t=document.querySelector('.nav-toggle'),n=document.querySelector('nav[aria-label="Primary"]');if(!t||!n)return;t.addEventListener('click',function(){var o=t.getAttribute('aria-expanded')==='true';t.setAttribute('aria-expanded',String(!o));n.classList.toggle('nav-open',!o);});document.addEventListener('click',function(e){if(!t.contains(e.target)&&!n.contains(e.target)){t.setAttribute('aria-expanded','false');n.classList.remove('nav-open');}});})();
+  </script>
 </body>
 </html>
