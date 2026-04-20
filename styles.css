@@ -147,6 +147,10 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .modal-title{position:absolute;top:20px;left:20px;color:#f3efe6;font-family:"EB Garamond",serif;font-size:1.4rem}
 .modal-count{position:absolute;bottom:20px;left:20px;color:#cfc7b8;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
 
+.book-tile{transition:transform .18s ease,border-color .18s ease}
+.book-tile:hover{border-color:var(--ink);transform:translateY(-2px)}
+.book-tile-label{padding:14px 16px;background:var(--ink);color:var(--paper);font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.13em;display:flex;justify-content:space-between;align-items:center}
+.book-tile-label span{font-size:1rem;font-weight:400;letter-spacing:0}
 .hero-portrait{max-width:320px;justify-self:center}
 .hero-portrait .thumb{aspect-ratio:1/1;object-fit:cover;width:100%;display:block}
 .project-cover{margin-top:var(--s3);max-width:520px;border:1px solid var(--line);background:var(--panel);padding:10px}
