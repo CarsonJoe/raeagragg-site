@@ -175,7 +175,7 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 @media (max-width:700px){
   .nav-toggle{display:flex}
   header{flex-wrap:wrap;align-items:center}
-  nav[aria-label="Primary"]{display:none;width:100%;flex-direction:column;gap:0;border-top:1px solid var(--line);padding-top:var(--s2);margin-top:var(--s2)}
+  nav[aria-label="Primary"]{display:none;width:100%;flex-direction:column;gap:0;border-top:1px solid var(--line);padding-top:var(--s2);margin-top:var(--s2);order:3}
   nav[aria-label="Primary"].nav-open{display:flex}
   nav[aria-label="Primary"] a{padding:11px 0;border-bottom:1px solid var(--line);font-size:.82rem}
   nav[aria-label="Primary"] a:last-child{border-bottom:none}
