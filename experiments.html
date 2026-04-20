@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Raea Gragg — Interaction Experiments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <style>
+    body { position: relative; background-color: var(--paper); }
+
+    /* Splatter canvas sits below content, receives no pointer events */
+    #splat {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap { position: relative; z-index: 1; }
+
+    /* Experiment section chrome */
+    .exp-section { margin-top: var(--s6); }
+    .exp-label {
+      font-size: .68rem; text-transform: uppercase; letter-spacing: .18em;
+      color: var(--muted); margin-bottom: var(--s2); display: block;
+    }
+    .exp-demo {
+      padding: var(--s4) var(--s3); margin-top: var(--s2);
+    }
+
+    /* ── Experiment 1: hover links ── */
+    .splat-nav {
+      display: flex; gap: var(--s3); flex-wrap: wrap; align-items: center;
+    }
+    .splat-nav a {
+      font-size: .8rem; text-transform: uppercase; letter-spacing: .14em;
+      color: var(--muted); border-bottom: 1px solid transparent; padding-bottom: 2px;
+      transition: color .15s, border-color .15s; cursor: pointer;
+    }
+    .splat-nav a:hover, .splat-nav a.splat-active { color: var(--ink); }
+    .splat-nav a:hover { border-color: var(--ink); }
+    #main-nav a.splat-active { color: var(--ink); }
+
+    /* ── Experiment 2: click burst buttons ── */
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .burst-btn {
+      appearance: none; cursor: pointer;
+      display: inline-flex; align-items: center; min-height: 42px;
+      padding: 0 20px; border: 1px solid var(--ink); background: var(--ink);
+      color: var(--paper); font-family: inherit; font-size: .74rem;
+      font-weight: 600; text-transform: uppercase; letter-spacing: .12em;
+      border-radius: 999px; transition: opacity .2s;
+    }
+    .burst-btn:hover { opacity: .85; }
+    .burst-btn.outline { background: transparent; color: var(--ink); }
+
+    /* ── Experiment 3: card hover ── */
+    .splat-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s2);
+    }
+    .splat-card {
+      border: 1px solid var(--line); padding: var(--s3);
+      min-height: 120px; cursor: default;
+      transition: border-color .2s, transform .2s;
+    }
+    .splat-card:hover { border-color: var(--ink); transform: translateY(-3px); }
+    .splat-card h3 { margin: 0; font-family: "EB Garamond", serif; font-size: 1.3rem; }
+    .splat-card p  { margin: 6px 0 0; font-size: .82rem; color: var(--muted); }
+
+    /* ── Experiment 4: word hover ── */
+    .hover-text {
+      font-family: "EB Garamond", serif;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      line-height: 1.55; max-width: 56ch;
+    }
+    .hw { cursor: default; display: inline; }
+
+    @media (max-width: 700px) {
+      .splat-cards { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 500px) {
+      .splat-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="splat"></canvas>
+
+  <div class="wrap">
+    <header>
+      <div class="logo">Raea Gragg<small>Author • Illustrator • Animator</small></div>
+      <nav id="main-nav" aria-label="Primary">
+        <a href="./index.html" data-hue="0.0">Home</a>
+        <a href="./books.html" data-hue="0.15">Books</a>
+        <a href="./art.html" data-hue="0.33">Art</a>
+        <a href="./projects.html" data-hue="0.55">Upcoming</a>
+        <a href="./about.html" data-hue="0.82">About</a>
+      </nav>
+      <div class="nav-toggle" role="button" tabindex="0" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <span style="font-size:.68rem;text-transform:uppercase;letter-spacing:.18em;color:var(--muted)">Experiments</span>
+        <h1 style="font-family:'EB Garamond',serif;font-size:clamp(2.2rem,6vw,5rem);line-height:.9;font-weight:500;margin:var(--s2) 0 0">Paint Interactions</h1>
+        <p class="lead">Exploring paint splatters as UI feedback — hover, click, and drift through each experiment below.</p>
+        <div class="actions">
+          <a class="btn secondary" href="./canvas.html">Canvas page</a>
+          <a class="btn secondary" href="./index.html">Back to site</a>
+        </div>
+      </section>
+
+      <!-- Experiment 1 -->
+      <section class="exp-section">
+        <span class="exp-label">Experiment 01 — Navigation hover</span>
+        <h2 style="font-family:'EB Garamond',serif;font-size:2rem;font-weight:500;margin:0">Link Hover</h2>
+        <p class="sub">Each link leaves a small paint mark on hover. The header nav above is wired the same way.</p>
+        <div class="exp-demo">
+          <nav class="splat-nav" id="demo-nav">
+            <a data-hue="0.15">Books</a>
+            <a data-hue="0.33">Art</a>
+            <a data-hue="0.55">Upcoming Projects</a>
+            <a data-hue="0.82">About Me</a>
+            <a data-hue="0.9">Contact</a>
+          </nav>
+        </div>
+      </section>
+
+      <!-- Experiment 2 -->
+      <section class="exp-section">
+        <span class="exp-label">Experiment 02 — Click burst</span>
+        <h2 style="font-family:'EB Garamond',serif;font-size:2rem;font-weight:500;margin:0">Buttons</h2>
+        <p class="sub">Clicking fires a radial burst of splatters from the point of contact.</p>
+        <div class="exp-demo">
+          <div class="btn-row">
+            <button class="burst-btn" data-hue="0.0">Explore Books</button>
+            <button class="burst-btn" data-hue="0.15">View Art</button>
+            <button class="burst-btn outline" data-hue="0.55">Learn More</button>
+            <button class="burst-btn outline" data-hue="0.82">Get in Touch</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experiment 3 -->
+      <section class="exp-section">
+        <span class="exp-label">Experiment 03 — Card hover fill</span>
+        <h2 style="font-family:'EB Garamond',serif;font-size:2rem;font-weight:500;margin:0">Cards</h2>
+        <p class="sub">Hovering a card seeds gentle splatters inside it while you linger.</p>
+        <div class="exp-demo">
+          <div class="splat-cards">
+            <div class="splat-card" data-hue="0.0">
+              <h3>Books</h3>
+              <p>Middle grade, children's, and YA titles from Raea Gragg.</p>
+            </div>
+            <div class="splat-card" data-hue="0.33">
+              <h3>Art</h3>
+              <p>Traditional, digital, and ceramic galleries.</p>
+            </div>
+            <div class="splat-card" data-hue="0.6">
+              <h3>Upcoming</h3>
+              <p>Private previews and in-progress work.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experiment 4 -->
+      <section class="exp-section">
+        <span class="exp-label">Experiment 04 — Word hover</span>
+        <h2 style="font-family:'EB Garamond',serif;font-size:2rem;font-weight:500;margin:0">Type</h2>
+        <p class="sub">Hover individual words to leave micro-splatters as you read.</p>
+        <div class="exp-demo">
+          <p class="hover-text" id="hover-para">
+            Raea Gragg is a multi award winning graphic novelist whose first graphic novel earned a Kirkus star. Her mission is to transform reluctant readers and squirmy tweens into lovers of books.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Raea Gragg</div>
+      <div><a href="./about.html">About</a></div>
+    </footer>
+  </div>
+
+  <script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  (function(){var t=document.querySelector('.nav-toggle'),n=document.querySelector('nav[aria-label="Primary"]');if(!t||!n)return;t.addEventListener('click',function(){var o=t.getAttribute('aria-expanded')==='true';t.setAttribute('aria-expanded',String(!o));n.classList.toggle('nav-open',!o);});document.addEventListener('click',function(e){if(!t.contains(e.target)&&!n.contains(e.target)){t.setAttribute('aria-expanded','false');n.classList.remove('nav-open');}});})();
+  </script>
+
+  <script src="./texture.js"></script>
+
+  <!-- Splatter engine + interaction wiring -->
+  <script>
+  (function () {
+    'use strict';
+
+    var canvas = document.getElementById('splat');
+    var ctx    = canvas.getContext('2d');
+    var pool   = [];
+    var hue    = Math.random();
+
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+
+    function rainbowRgb(h) {
+      var a = 0.48, L = 0.52;
+      function ch(n) { var k=(n+h*12)%12; return L-a*Math.max(-1,Math.min(k-3,9-k,1)); }
+      return [Math.round(ch(0)*255), Math.round(ch(8)*255), Math.round(ch(4)*255)];
+    }
+
+    // Core: create one splatter at viewport coords (x, y)
+    function addSplat(x, y, opts) {
+      opts = opts || {};
+      var huePin = opts.hue !== undefined ? opts.hue : -1;
+      if (huePin >= 0) hue = huePin;
+      else hue = (hue + 0.014 + Math.random() * 0.018) % 1;
+
+      var baseR    = opts.baseR    || 7;
+      var lifetime = opts.lifetime || 2500;
+      var maxAlpha = opts.alpha    !== undefined ? opts.alpha : 0.45;
+      var vx = opts.vx || 0, vy = opts.vy || 0;
+      var dirAng = Math.atan2(vy, vx);
+      var rgb = rainbowRgb(hue);
+
+      var blobs = [];
+      for (var i = 0; i < 6 + Math.floor(Math.random()*5); i++) {
+        var a = Math.random()*Math.PI*2, dd = Math.random()*baseR*.65;
+        blobs.push({ x:x+Math.cos(a)*dd, y:y+Math.sin(a)*dd,
+                     r:baseR*(.2+Math.random()*.5), delay:Math.random()*8 });
+      }
+
+      var drips = [];
+      for (var i = 0; i < 1 + Math.floor(Math.random()*3); i++) {
+        var a = dirAng + (Math.random()-.5)*Math.PI*2;
+        var len = baseR*.4 + Math.random()*baseR*.9;
+        var ox2 = Math.cos(a)*baseR*.55, oy2 = Math.sin(a)*baseR*.55;
+        var w = .7 + Math.random()*baseR*.15;
+        drips.push({ x1:x+ox2, y1:y+oy2, x2:x+ox2+Math.cos(a)*len, y2:y+oy2+Math.sin(a)*len,
+                     w:w, curve:(Math.random()-.5)*w*2, delay:6+Math.random()*16 });
+      }
+
+      var dots = [];
+      for (var i = 0; i < 12 + Math.floor(Math.random()*10); i++) {
+        var a = Math.random()*Math.PI*2;
+        var dist = baseR*.5 + Math.random()*baseR*1.7;
+        var px = x+Math.cos(a)*dist, py = y+Math.sin(a)*dist;
+        var ad = Math.sqrt((px-x)*(px-x)+(py-y)*(py-y));
+        dots.push({ x:px, y:py, r:.4+Math.random()*1.5,
+                    delay:Math.min(90,(ad/(baseR*4))*70+Math.random()*8) });
+      }
+
+      pool.push({ rgb:rgb, born:performance.now(), lifetime:lifetime,
+                  maxAlpha:maxAlpha, blobs:blobs, drips:drips, dots:dots });
+    }
+
+    // Scatter N splatters randomly inside an element's bounding rect
+    function addSplatsInEl(el, n, opts) {
+      var r = el.getBoundingClientRect();
+      for (var i = 0; i < n; i++) {
+        addSplat(r.left + Math.random()*r.width,
+                 r.top  + Math.random()*r.height, opts);
+      }
+    }
+
+    var INTRO = 90;
+
+    function drawDrip(dr) {
+      var dx=dr.x2-dr.x1, dy=dr.y2-dr.y1, len=Math.sqrt(dx*dx+dy*dy);
+      if (len<1) return;
+      var nx=-dy/len, ny=dx/len, h2=dr.w*.5;
+      var mx=(dr.x1+dr.x2)*.5+nx*dr.curve, my=(dr.y1+dr.y2)*.5+ny*dr.curve;
+      ctx.beginPath();
+      ctx.moveTo(dr.x1+nx*h2, dr.y1+ny*h2);
+      ctx.quadraticCurveTo(mx+nx*h2*.3, my+ny*h2*.3, dr.x2, dr.y2);
+      ctx.quadraticCurveTo(mx-nx*h2*.3, my-ny*h2*.3, dr.x1-nx*h2, dr.y1-ny*h2);
+      ctx.closePath(); ctx.fill();
+    }
+
+    function drawSplatter(s, now) {
+      var age = now - s.born, t = age / s.lifetime;
+      if (t >= 1) return false;
+      var sa = (t < 0.6 ? 1 : 1-(t-.6)/.4) * s.maxAlpha;
+      var r=s.rgb[0], g=s.rgb[1], b=s.rgb[2];
+      ctx.fillStyle = 'rgb('+r+','+g+','+b+')';
+      var i, el, ea;
+      for (i=0;i<s.blobs.length;i++){
+        el=s.blobs[i]; ea=age-el.delay; if(ea<0)continue;
+        ctx.globalAlpha=Math.min(1,ea/INTRO)*sa;
+        ctx.beginPath(); ctx.arc(el.x,el.y,el.r,0,Math.PI*2); ctx.fill();
+      }
+      for (i=0;i<s.drips.length;i++){
+        el=s.drips[i]; ea=age-el.delay; if(ea<0)continue;
+        ctx.globalAlpha=Math.min(1,ea/INTRO)*sa; drawDrip(el);
+      }
+      for (i=0;i<s.dots.length;i++){
+        el=s.dots[i]; ea=age-el.delay; if(ea<0)continue;
+        ctx.globalAlpha=Math.min(1,ea/INTRO)*sa;
+        ctx.beginPath(); ctx.arc(el.x,el.y,el.r,0,Math.PI*2); ctx.fill();
+      }
+      ctx.globalAlpha=1;
+      return true;
+    }
+
+    function loop() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      var now = performance.now();
+      pool = pool.filter(function(s){ return drawSplatter(s,now); });
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+
+    // ── Experiment 1: nav hover — flood the link background with staggered splatters ──
+    document.querySelectorAll('#main-nav a, #demo-nav a').forEach(function(link) {
+      var lastSplat = -Infinity;
+      link.addEventListener('mouseenter', function() {
+        var now = performance.now();
+        if (now - lastSplat < 2200) return;
+        lastSplat = now;
+        link.classList.add('splat-active');
+        setTimeout(function() { link.classList.remove('splat-active'); }, 2200);
+        var r = link.getBoundingClientRect();
+        var cols = Math.max(3, Math.ceil(r.width  / 18));
+        var rows = Math.max(2, Math.ceil(r.height / 18));
+
+        // Build all grid points, then shuffle so fill order is random
+        var pts = [];
+        for (var row = 0; row < rows; row++) {
+          for (var col = 0; col < cols; col++) {
+            pts.push([
+              r.left + (col + .5 + (Math.random()-.5)*.8) * (r.width  / cols),
+              r.top  + (row + .5 + (Math.random()-.5)*.8) * (r.height / rows)
+            ]);
+          }
+        }
+        for (var i = pts.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var tmp = pts[i]; pts[i] = pts[j]; pts[j] = tmp;
+        }
+
+        // Use link's own hue if set, otherwise fall back to global
+        var baseHue = link.dataset.hue !== undefined ? parseFloat(link.dataset.hue) : hue;
+        var FILL_MS = 250;
+        pts.forEach(function(pt, idx) {
+          var delay = (idx / pts.length) * FILL_MS;
+          setTimeout(function() {
+            var pinned = (baseHue + (Math.random() - 0.5) * 0.08 + 1) % 1;
+            addSplat(pt[0], pt[1], { baseR: 10 + Math.random()*6, lifetime:2200, alpha:0.55, hue:pinned });
+          }, delay);
+        });
+      });
+    });
+
+    // ── Experiment 2: button click burst ──
+    document.querySelectorAll('.burst-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        var hueBase = parseFloat(btn.dataset.hue) || hue;
+        var cx = e.clientX, cy = e.clientY;
+        var count = 7;
+        for (var i = 0; i < count; i++) {
+          var ang = (i/count)*Math.PI*2 + Math.random()*.4;
+          var d   = 18 + Math.random()*30;
+          addSplat(cx + Math.cos(ang)*d, cy + Math.sin(ang)*d, {
+            baseR:18+Math.random()*12, lifetime:3000, alpha:0.5,
+            vx:Math.cos(ang), vy:Math.sin(ang),
+            hue: hueBase
+          });
+        }
+        // Centre blob
+        addSplat(cx, cy, { baseR:24, lifetime:2500, alpha:0.45, hue:hueBase });
+      });
+    });
+
+    // ── Experiment 3: card hover — seeds splatters while hovering ──
+    document.querySelectorAll('.splat-card').forEach(function(card) {
+      var timer = null;
+      card.addEventListener('mouseenter', function() {
+        // Immediate first splatter
+        addSplatsInEl(card, 2, { baseR:12, lifetime:4000, alpha:0.28,
+                                  hue:parseFloat(card.dataset.hue)||hue });
+        timer = setInterval(function() {
+          addSplatsInEl(card, 1, { baseR:10+Math.random()*8, lifetime:3500,
+                                    alpha:0.22, hue:parseFloat(card.dataset.hue)||hue });
+        }, 280);
+      });
+      card.addEventListener('mouseleave', function() { clearInterval(timer); timer=null; });
+    });
+
+    // ── Experiment 4: word hover — wrap each word in a span ──
+    var para = document.getElementById('hover-para');
+    if (para) {
+      para.innerHTML = para.textContent.trim().split(/\s+/).map(function(w) {
+        return '<span class="hw">' + w + '</span>';
+      }).join(' ');
+      para.querySelectorAll('.hw').forEach(function(span) {
+        span.addEventListener('mouseenter', function() {
+          var r = span.getBoundingClientRect();
+          var cx = r.left + r.width/2, cy = r.top + r.height/2;
+          for (var i = 0; i < 3; i++) {
+            addSplat(cx + (Math.random()-.5)*r.width*1.4,
+                     cy + (Math.random()-.5)*24,
+                     { baseR:5+Math.random()*6, lifetime:1400, alpha:0.35 });
+          }
+        });
+      });
+    }
+
+  })();
+  </script>
+</body>
+</html>
