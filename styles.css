@@ -54,10 +54,10 @@ nav a:hover,nav a.active{color:var(--ink);border-color:var(--ink)}
 .btn.secondary{border-color:var(--line)}
 .btn.secondary:hover{border-color:var(--ink)}
 .grid-4{margin-top:var(--s5);display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s2)}
-.card-link{display:block;border:1px solid var(--line);background:var(--panel);padding:16px 14px;min-height:110px;transition:all .2s ease}
-.card-link span{display:block;font-family:"EB Garamond",serif;font-size:1.35rem;margin-bottom:6px}
-.card-link small{color:var(--muted);font-size:.82rem}
-.card-link:hover{border-color:var(--ink);transform:translateY(-1px)}
+.card-link{display:block;border:1px solid var(--ink);background:var(--ink);color:var(--paper);padding:16px 14px;min-height:110px;transition:all .2s ease}
+.card-link span{display:block;font-family:"EB Garamond",serif;font-size:1.35rem;margin-bottom:6px;color:var(--paper)}
+.card-link small{color:rgba(255,255,255,.65);font-size:.82rem}
+.card-link:hover{opacity:.85;transform:translateY(-1px)}
 section{margin-top:var(--s6);scroll-margin-top:24px}
 section h2{margin:0;font-family:"EB Garamond",serif;font-size:2.2rem;font-weight:500;line-height:1}
 .sub{margin-top:10px;color:var(--muted);max-width:66ch}
