@@ -147,6 +147,8 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .modal-title{position:absolute;top:20px;left:20px;color:#f3efe6;font-family:"EB Garamond",serif;font-size:1.4rem}
 .modal-count{position:absolute;bottom:20px;left:20px;color:#cfc7b8;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
 
+.hero-portrait{max-width:320px;justify-self:center}
+.hero-portrait .thumb{aspect-ratio:1/1;object-fit:cover;width:100%;display:block}
 .project-cover{margin-top:var(--s3);max-width:520px;border:1px solid var(--line);background:var(--panel);padding:10px}
 .project-cover img{width:100%;height:auto;display:block}
 .project-synopsis{margin-top:var(--s3);max-width:60ch;color:var(--ink);font-family:"EB Garamond",serif;font-size:1.15rem;line-height:1.65}
