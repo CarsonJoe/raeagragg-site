@@ -25,17 +25,38 @@
     </header>
 
     <main>
-      <section class="chapter">
+      <section class="mup-hero-covers">
+        <div class="mup-hero-grid">
+          <div class="mup-hero-card">
+            <a href="#mup1" class="flow-item mup-hero-img-wrap">
+              <img src="./assets/Mup%201%20%26%202/Mup%20Cover.jpg" alt="MUP Book I cover" />
+            </a>
+            <a class="cover-buy mup-hero-buy" href="#" target="_blank" rel="noopener">Amazon ↗</a>
+          </div>
+          <div class="mup-hero-card">
+            <a href="#mup2" class="flow-item mup-hero-img-wrap">
+              <img src="./assets/Mup%201%20%26%202/Mup2%20Cover.jpg" alt="MUP Book II cover" />
+            </a>
+            <a class="cover-buy mup-hero-buy" href="#" target="_blank" rel="noopener">Amazon ↗</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="mup1" class="chapter">
         <div class="chapter-kicker">Book I</div>
         <h2>MUP</h2>
 
-        <div class="duo-covers">
-          <figure class="flow-item center narrow mup-cover-wrap">
-            <img class="mup-cover mup-cover-low" src="./assets/Mup%201%20%26%202/Mup%20Cover.jpg" alt="MUP cover" />
-          </figure>
+        <div class="book-detail-layout">
+          <div class="book-detail-text">
+            <p class="story-text">Adventure awaits and Mup is ready for it. But with one bad wish, a creeping disaster unfolds and Mup finds herself in the future, face-to-face with the one person she never wanted to become: her teenage self! Can the two girls work together to uncover the secret to the planet's survival before it's too late?</p>
+            <blockquote class="mup-quote">"A rollicking adventure that explores the themes of environmental stewardship and rejuvenation — all layered on top of a poignant tale of the inner struggle for identity caused by growing up. A must read for graphic novel lovers of all ages."<cite>— Jennifer Overaa, Librarian, San Anselmo Public Library</cite></blockquote>
+          </div>
+          <div class="book-cover-panel">
+            <button type="button" class="cover-button mup-detail-cover" onclick="openBook('mup1')" aria-label="View MUP cover">
+              <img src="./assets/Mup%201%20%26%202/mup-cover-full.jpg" alt="MUP full cover" />
+            </button>
+          </div>
         </div>
-
-        <p class="story-text">How did a college kid build something like MUP? The project started at Loyola Marymount University School of Film and Television, then expanded into a full narrative world and cast.</p>
 
         <div class="flow-gallery" aria-label="MUP character studies">
           <figure class="flow-item left">
@@ -74,17 +95,28 @@
         </div>
       </section>
 
-      <section class="chapter">
+      <section id="mup2" class="chapter">
         <div class="chapter-kicker">Book II</div>
         <h2>MUP And the Mammoth</h2>
 
-        <div class="duo-covers">
-          <figure class="flow-item center narrow mup-cover-wrap">
-            <img class="mup-cover" src="./assets/Mup%201%20%26%202/Mup2%20Cover.jpg" alt="MUP 2 cover" />
-          </figure>
+        <div class="book-detail-layout">
+          <div class="book-detail-text">
+            <p class="story-text">Twelve-year-old Mup tries to stop her father's engagement but accidentally time-travels eleven thousand years into the past with her would-be stepsister. Can the two girls work together to survive the ice age and get back home?</p>
+          </div>
+          <div class="book-cover-panel">
+            <button type="button" class="cover-button mup-detail-cover" onclick="openBook('mup2', 0)" aria-label="View MUP and the Mammoth front cover">
+              <img src="./assets/Mup%201%20%26%202/mup%26mammoth-cover-front.jpg" alt="MUP and the Mammoth front cover" />
+            </button>
+            <div class="cover-thumb-strip">
+              <button type="button" class="cover-thumb" onclick="openBook('mup2', 0)" aria-label="Front cover">
+                <img src="./assets/Mup%201%20%26%202/mup%26mammoth-cover-front.jpg" alt="Front" />
+              </button>
+              <button type="button" class="cover-thumb" onclick="openBook('mup2', 1)" aria-label="Back cover">
+                <img src="./assets/Mup%201%20%26%202/mup%26mammoth-cover-back.jpg" alt="Back" />
+              </button>
+            </div>
+          </div>
         </div>
-
-        <p class="story-text">Book II pushes the world further with new character dynamics, motion-heavy scenes, and stronger visual contrast.</p>
 
         <div class="flow-gallery">
           <figure class="flow-item left narrow">
@@ -105,8 +137,91 @@
       <div><a href="./books.html">Back to Books</a></div>
     </footer>
   </div>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();
-  (function(){var t=document.querySelector('.nav-toggle'),n=document.querySelector('nav[aria-label="Primary"]');if(!t||!n)return;t.addEventListener('click',function(){var o=t.getAttribute('aria-expanded')==='true';t.setAttribute('aria-expanded',String(!o));n.classList.toggle('nav-open',!o);});document.addEventListener('click',function(e){if(!t.contains(e.target)&&!n.contains(e.target)){t.setAttribute('aria-expanded','false');n.classList.remove('nav-open');}});})();
+  <div id="bookModal" class="book-modal" aria-hidden="true">
+    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-count" id="modalCount"></div>
+    <div class="book-modal-inner">
+      <button class="modal-nav" id="modalPrev" aria-label="Previous image">←</button>
+      <div class="book-modal-stage"><img id="modalImage" alt="" /></div>
+      <button class="modal-nav" id="modalNext" aria-label="Next image">→</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const books = {
+      'mup1': {
+        title: 'MUP',
+        images: ['./assets/Mup%201%20%26%202/mup-cover-full.jpg']
+      },
+      'mup2': {
+        title: 'MUP and the Mammoth',
+        images: [
+          './assets/Mup%201%20%26%202/mup%26mammoth-cover-front.jpg',
+          './assets/Mup%201%20%26%202/mup%26mammoth-cover-back.jpg'
+        ]
+      }
+    };
+
+    const modal = document.getElementById('bookModal');
+    const modalImg = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalCount = document.getElementById('modalCount');
+    let activeBook = null;
+    let index = 0;
+
+    function renderModal() {
+      const b = books[activeBook];
+      const multi = b.images.length > 1;
+      modalTitle.textContent = b.title;
+      modalImg.src = b.images[index];
+      modalImg.alt = b.title + ' image ' + (index + 1);
+      modalCount.textContent = multi ? (index + 1) + ' / ' + b.images.length : '';
+      document.getElementById('modalPrev').style.visibility = multi ? '' : 'hidden';
+      document.getElementById('modalNext').style.visibility = multi ? '' : 'hidden';
+    }
+    function openBook(key, startIndex) {
+      activeBook = key;
+      index = startIndex || 0;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      renderModal();
+    }
+    function closeModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    function nextImg() { const len = books[activeBook].images.length; index = (index + 1) % len; renderModal(); }
+    function prevImg() { const len = books[activeBook].images.length; index = (index - 1 + len) % len; renderModal(); }
+
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('modalNext').addEventListener('click', nextImg);
+    document.getElementById('modalPrev').addEventListener('click', prevImg);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('open')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowRight') nextImg();
+      if (e.key === 'ArrowLeft') prevImg();
+    });
+    modal.addEventListener('wheel', (e) => {
+      if (!modal.classList.contains('open')) return;
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { e.preventDefault(); if (e.deltaY > 0) nextImg(); else prevImg(); }
+    }, { passive: false });
+    let touchStartX = 0;
+    modal.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    modal.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) { if (dx < 0) nextImg(); else prevImg(); }
+    });
+
+    (function(){var t=document.querySelector('.nav-toggle'),n=document.querySelector('nav[aria-label="Primary"]');if(!t||!n)return;t.addEventListener('click',function(){var o=t.getAttribute('aria-expanded')==='true';t.setAttribute('aria-expanded',String(!o));n.classList.toggle('nav-open',!o);});document.addEventListener('click',function(e){if(!t.contains(e.target)&&!n.contains(e.target)){t.setAttribute('aria-expanded','false');n.classList.remove('nav-open');}});})();
   </script>
+  <script src="./texture.js"></script>
+  <script src="./nav-splat.js"></script>
 </body>
 </html>

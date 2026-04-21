@@ -205,5 +205,7 @@
   
   (function(){var t=document.querySelector('.nav-toggle'),n=document.querySelector('nav[aria-label="Primary"]');if(!t||!n)return;t.addEventListener('click',function(){var o=t.getAttribute('aria-expanded')==='true';t.setAttribute('aria-expanded',String(!o));n.classList.toggle('nav-open',!o);});document.addEventListener('click',function(e){if(!t.contains(e.target)&&!n.contains(e.target)){t.setAttribute('aria-expanded','false');n.classList.remove('nav-open');}});})();
   </script>
+  <script src="./texture.js"></script>
+  <script src="./nav-splat.js"></script>
 </body>
 </html>

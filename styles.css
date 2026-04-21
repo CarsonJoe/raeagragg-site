@@ -1,6 +1,12 @@
 :root{
   --paper:#f6f2e8;
+  
+/* replaced panel to dark */
   --panel:#faf7f1;
+  /* --panel:#231e1e; */
+
+
+
   --ink:#1f1d19;
   --muted:#666155;
   --line:#d8d0c1;
@@ -9,6 +15,7 @@
   --s1:8px; --s2:14px; --s3:22px; --s4:34px; --s5:56px; --s6:88px;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 html,body{margin:0;padding:0}
 body{
   font-family:"Albert Sans", system-ui, -apple-system, sans-serif;
@@ -99,7 +106,7 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 /* Scroll-story layouts */
 .story-intro{margin-top:var(--s4);max-width:68ch}
 .flow-gallery{margin-top:var(--s5);display:flex;flex-direction:column;gap:38px}
-.flow-item{background:var(--panel);border:1px solid var(--line);padding:10px}
+.flow-item{background:var(--ink);border:1px solid var(--line);padding:10px}
 .flow-item img{width:100%;height:auto;display:block}
 .flow-item p{margin:10px 2px 2px;color:var(--muted);font-size:.86rem}
 .flow-item.left{width:74%;margin-right:auto;transform:rotate(-.4deg)}
@@ -123,6 +130,28 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .mup-cover-wrap{display:flex;justify-content:center;align-items:center}
 .mup-cover{width:min(260px,52vw);height:auto;image-rendering:auto}
 .mup-cover-low{width:min(180px,38vw)}
+
+.book-detail-layout{display:flex;gap:var(--s4);align-items:flex-start;margin-top:var(--s3)}
+.book-detail-text{flex:1;min-width:0}
+.book-cover-panel{flex-shrink:0;width:220px}
+.mup-detail-cover{width:100%;aspect-ratio:auto;min-height:0;padding:6px}
+.mup-detail-cover img{width:100%;height:auto;object-fit:unset;max-height:none}
+.cover-thumb-strip{display:flex;gap:5px;margin-top:8px}
+.cover-thumb{appearance:none;border:1px solid var(--line);background:var(--panel);padding:3px;cursor:pointer;width:56px;flex-shrink:0}
+.cover-thumb img{width:100%;height:auto;display:block}
+.cover-thumb:hover{border-color:var(--ink)}
+
+.mup-quote{margin:var(--s3) 0 0;padding-left:var(--s3);border-left:2px solid var(--line);font-family:"EB Garamond",serif;font-size:1.05rem;color:var(--ink);max-width:60ch}
+.mup-quote cite{display:block;margin-top:8px;font-style:normal;font-size:.8rem;letter-spacing:.04em;color:var(--muted)}
+
+.mup-hero-covers{margin-top:var(--s6);margin-bottom:var(--s6)}
+.mup-hero-title{text-align:center;margin-bottom:var(--s4)}
+.mup-hero-grid{display:flex;flex-direction:row;gap:32px;align-items:flex-start;justify-content:center}
+.mup-hero-card{display:flex;flex-direction:column;align-items:center;gap:8px}
+.mup-hero-card:hover .flow-item{border-color:var(--ink)}
+.mup-hero-img-wrap{padding:8px;margin:0;display:block;width:fit-content}
+.mup-hero-img-wrap img{width:200px;height:auto;display:block}
+.mup-hero-buy{display:block;text-align:center}
 
 .book-grid-covers{margin-top:var(--s4);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .cover-tile{display:flex;flex-direction:column;gap:8px}
@@ -182,11 +211,35 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 @media (max-width:700px){
   .nav-toggle{display:flex}
   header{flex-wrap:wrap;align-items:center}
-  nav[aria-label="Primary"]{display:none;width:100%;flex-direction:column;gap:0;border-top:1px solid var(--line);padding-top:var(--s2);margin-top:var(--s2);order:3}
-  nav[aria-label="Primary"].nav-open{display:flex}
-  nav[aria-label="Primary"] a{padding:11px 0;border-bottom:1px solid var(--line);font-size:.82rem}
-  nav[aria-label="Primary"] a:last-child{border-bottom:none}
+
+  nav[aria-label="Primary"]{
+  	display:none;
+	width:100%;
+	flex-direction:column;
+	gap:0;
+	border-top:1px solid var(--line);
+	order:3
+  }
+
+  nav[aria-label="Primary"].nav-open{
+  	display:flex
+  }
+
+  nav[aria-label="Primary"] a{
+	padding:11px 0;
+  	border-bottom:1px solid var(--line);
+	font-size:.82rem
+  }
+
+  nav[aria-label="Primary"] a:last-child{
+  	border-bottom:none}
+
+
   .grid-4,.mosaic-grid,.book-grid,.art-grid,.art-grid-4,.book-grid-covers{grid-template-columns:1fr}
+  .mup-hero-grid{flex-wrap:wrap}
+  .mup-hero-card{width:140px}
+  .book-detail-layout{flex-direction:column}
+  .book-cover-panel{width:100%;max-width:280px}
   .char-strip figure{flex-basis:170px}
   .hero{margin-top:0;padding-top:var(--s3)}
   .hero h1{display:none}
