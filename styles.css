@@ -66,6 +66,7 @@ nav a.splat-active{color:var(--ink)}
 .card-link small{color:rgba(255,255,255,.65);font-size:.82rem;position:relative;z-index:1}
 .card-link:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.35)}
 section{margin-top:var(--s6);scroll-margin-top:24px}
+
 section h2{margin:0;font-family:"EB Garamond",serif;font-size:2.2rem;font-weight:500;line-height:1}
 .sub{margin-top:10px;color:var(--muted);max-width:66ch}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4)}
@@ -145,6 +146,7 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .mup-quote cite{display:block;margin-top:8px;font-style:normal;font-size:.8rem;letter-spacing:.04em;color:var(--muted)}
 
 .mup-hero-covers{margin-top:var(--s6);margin-bottom:var(--s6)}
+.mup-hero-covers,.novels-hero{text-align:center}
 .mup-hero-title{text-align:center;margin-bottom:var(--s4)}
 .mup-hero-grid{display:flex;flex-direction:row;gap:32px;align-items:flex-start;justify-content:center}
 .mup-hero-card{display:flex;flex-direction:column;align-items:center;gap:8px}
@@ -154,20 +156,34 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .mup-hero-buy{display:block;text-align:center}
 
 .book-grid-covers{margin-top:var(--s4);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-.cover-tile{display:flex;flex-direction:column;gap:8px}
-.cover-button{appearance:none;border:1px solid var(--line);background:var(--panel);padding:8px;cursor:pointer;position:relative;aspect-ratio:3/4;min-height:300px;display:flex;align-items:center;justify-content:center}
-.cover-button img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;background:#eee8dc;display:block}
-.cover-button:hover{border-color:var(--ink)}
+.cover-tile{display:flex;flex-direction:column;gap:8px;border:1px solid #d8d0c100;background:var(--panel);padding:clamp(6px,1.4vw,10px);box-sizing:border-box}
+.cover-tile:hover{border-color:var(--ink)}
+.cover-button{appearance:none;border:0;background:transparent;padding:0;box-sizing:border-box;cursor:pointer;position:relative;aspect-ratio:3/4;min-height:300px;display:flex;align-items:flex-end;justify-content:center}
+.cover-button img{width:100%;height:auto;object-fit:contain;object-position:center bottom;background:#eee8dc;display:block;align-self:flex-end}
 .cover-button .open-hint{position:absolute;right:14px;bottom:14px;border:1px solid var(--line);background:rgba(250,247,241,.92);padding:4px 8px;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .cover-meta{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .cover-title{font-family:"EB Garamond",serif;font-size:1.08rem;line-height:1.1}
 .cover-buy{font-size:.67rem;text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid var(--line);padding-bottom:1px;color:var(--muted)}
 .cover-buy:hover{color:var(--ink);border-color:var(--ink)}
+.book-return-row{margin-top:var(--s5);display:flex;justify-content:center}
 .cover-blurb{font-size:.82rem;color:var(--muted);line-height:1.55;margin-top:6px}
 .section-divider{border:none;border-top:1px solid var(--line);margin:var(--s6) 0}
+.section-divider-no-margin{margin:10px;}
+.splat-bg{position:relative;isolation:isolate;background:var(--panel);padding:120px 30px;overflow:hidden; margin-top: 0}
+.splat-bg .splat-content{position:relative;z-index:1}
+.splat-bg canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
 .books-shelf{display:flex;flex-wrap:wrap;gap:28px 20px;margin-top:var(--s4)}
 .books-shelf .cover-tile{width:200px;flex:0 0 200px}
 .books-shelf .cover-button{width:100%;min-height:0;aspect-ratio:2/3}
+.books-shelf .cover-button img{object-position:center bottom}
+.books-shelf .cover-title{padding-bottom:30px}
+.novels-grid{display:flex;flex-direction:row;gap:32px;align-items:flex-start;justify-content:center;margin-top:var(--s4)}
+.novels-grid .cover-tile{width:auto;flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;border:none;background:transparent;padding:0;box-sizing:border-box}
+.novels-grid .mup-hero-img-wrap{padding:8px;margin:0;display:block;width:fit-content}
+.novels-grid .mup-hero-img-wrap img{width:200px;height:auto;display:block}
+.novels-grid .cover-meta{justify-content:center;width:100%}
+.novels-grid .cover-blurb{text-align:left;width:200px}
+.novels-hero .sub,.novels-hero .cover-blurb,.mup-hero-covers .sub{max-width:38ch;margin-left:auto;margin-right:auto;text-align:center}
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 .book-modal{position:fixed;inset:0;background:rgba(20,18,15,.9);z-index:1000;display:none;align-items:center;justify-content:center}
