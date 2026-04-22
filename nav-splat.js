@@ -291,7 +291,7 @@
   // Wire up all nav links with data-hue attributes
   document.querySelectorAll('nav a[data-hue]').forEach(function(link) {
     var lastSplat = -Infinity;
-    link.addEventListener('mouseenter', function() {
+    function paintLinkSplatter(immediate) {
       var now = performance.now();
       if (now - lastSplat < 2200) return;
       lastSplat = now;
@@ -318,15 +318,73 @@
       }
 
       var baseHue = parseFloat(link.dataset.hue);
-      var FILL_MS = 250;
+      var FILL_MS = immediate ? 0 : 250;
       pts.forEach(function(pt, idx) {
         setTimeout(function() {
           var pinned = (baseHue + (Math.random()-.5)*0.08 + 1) % 1;
           addSplat(pt[0], pt[1], { baseR:10+Math.random()*6, lifetime:2200, alpha:0.55, hue:pinned });
         }, (idx / pts.length) * FILL_MS);
       });
+    }
+
+    link.addEventListener('mouseenter', function() {
+      paintLinkSplatter(false);
     });
+
+    if (link.matches(':hover')) {
+      paintLinkSplatter(true);
+    }
   });
+
+  function navKeyFromLocation() {
+    var hash = window.location.hash || '';
+    var match = hash.match(/(?:^#|[?&])nav=([^&]+)/i);
+    return match ? decodeURIComponent(match[1]).toLowerCase() : '';
+  }
+
+  function navKeyForLink(link) {
+    try {
+      var url = new URL(link.href, window.location.href);
+      var match = url.hash.match(/(?:^#|[?&])nav=([^&]+)/i);
+      return match ? decodeURIComponent(match[1]).toLowerCase() : '';
+    } catch (err) {
+      return '';
+    }
+  }
+
+  function paintLinkInstant(link) {
+    var r = link.getBoundingClientRect();
+    var sx = window.pageXOffset, sy = window.pageYOffset;
+    var cols = Math.max(3, Math.ceil(r.width / 18));
+    var rows = Math.max(2, Math.ceil(r.height / 18));
+    var baseHue = parseFloat(link.dataset.hue);
+    var pts = [];
+
+    for (var row = 0; row < rows; row++) {
+      for (var col = 0; col < cols; col++) {
+        pts.push([
+          sx + r.left + (col + .5 + (Math.random() - .5) * .8) * (r.width / cols),
+          sy + r.top + (row + .5 + (Math.random() - .5) * .8) * (r.height / rows)
+        ]);
+      }
+    }
+
+    for (var i = 0; i < pts.length; i++) {
+      var pinned = (baseHue + (Math.random() - .5) * 0.08 + 1) % 1;
+      addSplat(pts[i][0], pts[i][1], { baseR: 10 + Math.random() * 6, lifetime: 2200, alpha: 0.55, hue: pinned });
+    }
+  }
+
+  var navKey = navKeyFromLocation();
+  if (navKey) {
+    document.querySelectorAll('nav a[data-hue]').forEach(function(link) {
+      if (navKeyForLink(link) === navKey) {
+        link.classList.add('splat-active');
+        setTimeout(function() { link.classList.remove('splat-active'); }, 2200);
+        paintLinkInstant(link);
+      }
+    });
+  }
 
   document.querySelectorAll('.splat-hover-draw').forEach(function(root) {
     createLocalSplatterLayer(root);

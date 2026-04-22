@@ -15,11 +15,11 @@
     <header>
       <div class="logo">Raea Gragg<small>Author • Illustrator • Animator</small></div>
       <nav aria-label="Primary">
-        <a href="./index.html" data-hue="0.0">Home</a>
-        <a href="./books.html" data-hue="0.15">Books</a>
-        <a class="active" href="./art.html" data-hue="0.33">Art</a>
-        <a href="./projects.html" data-hue="0.55">Upcoming</a>
-        <a href="./about.html" data-hue="0.82">About</a>
+        <a href="./index.html#nav=home" data-hue="0.0">Home</a>
+        <a href="./books.html#nav=books" data-hue="0.15">Books</a>
+        <a class="active" href="./art.html#nav=art" data-hue="0.33">Art</a>
+        <a href="./projects.html#nav=projects" data-hue="0.55">Upcoming</a>
+        <a href="./about.html#nav=about" data-hue="0.82">About</a>
       </nav>
       <div class="nav-toggle" role="button" tabindex="0" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></div>
     </header>
@@ -147,6 +147,32 @@
           </figure>
         </div>
       </section>
+
+      <section>
+        <p class="section-kicker">Series</p>
+        <h2>Dogs</h2>
+
+        <div class="collection-strip">
+          <figure onclick="openCollection('dogs', 0)">
+            <img src="./assets/Children%20books/dogs/507c35_25c6b22866704e4883ec792fd40107c9~mv2_d_3300_2550_s_4_2.jpg" alt="Dogs page 1" />
+          </figure>
+          <figure onclick="openCollection('dogs', 1)">
+            <img src="./assets/Children%20books/dogs/507c35_2ea3a458b09b49a1a32e3fdd3a9b4900~mv2_d_3300_2550_s_4_2.jpg" alt="Dogs page 2" />
+          </figure>
+          <figure onclick="openCollection('dogs', 2)">
+            <img src="./assets/Children%20books/dogs/507c35_55eecf65e7804b82a3cdc59110217a77~mv2_d_3300_2550_s_4_2.jpg" alt="Dogs page 3" />
+          </figure>
+          <figure onclick="openCollection('dogs', 3)">
+            <img src="./assets/Children%20books/dogs/507c35_8f90936dfa984fc28eec032f8b7affeb~mv2_d_3300_2550_s_4_2.jpg" alt="Dogs page 4" />
+          </figure>
+          <figure onclick="openCollection('dogs', 4)">
+            <img src="./assets/Children%20books/dogs/507c35_909190c7c42841ed9fd542685ec6b644~mv2_d_3300_2550_s_4_2.jpg" alt="Dogs page 5" />
+          </figure>
+          <figure onclick="openCollection('dogs', 5)">
+            <img src="./assets/Children%20books/dogs/507c35_bcf07dfad09046208b2cf1f5fb60c51e~mv2_d_3300_2550_s_4_2.jpg" alt="Dogs page 6" />
+          </figure>
+        </div>
+      </section>
     </main>
 
     <footer>
@@ -199,6 +225,17 @@
           './assets/Real Photos/IMG_0691.jpeg',
           './assets/Real Photos/IMG_0693.jpeg',
           './assets/Real Photos/IMG_5575.jpeg'
+        ]
+      },
+      'dogs': {
+        title: 'Dogs',
+        images: [
+          './assets/Children%20books/dogs/507c35_25c6b22866704e4883ec792fd40107c9~mv2_d_3300_2550_s_4_2.jpg',
+          './assets/Children%20books/dogs/507c35_2ea3a458b09b49a1a32e3fdd3a9b4900~mv2_d_3300_2550_s_4_2.jpg',
+          './assets/Children%20books/dogs/507c35_55eecf65e7804b82a3cdc59110217a77~mv2_d_3300_2550_s_4_2.jpg',
+          './assets/Children%20books/dogs/507c35_8f90936dfa984fc28eec032f8b7affeb~mv2_d_3300_2550_s_4_2.jpg',
+          './assets/Children%20books/dogs/507c35_909190c7c42841ed9fd542685ec6b644~mv2_d_3300_2550_s_4_2.jpg',
+          './assets/Children%20books/dogs/507c35_bcf07dfad09046208b2cf1f5fb60c51e~mv2_d_3300_2550_s_4_2.jpg'
         ]
       }
     };

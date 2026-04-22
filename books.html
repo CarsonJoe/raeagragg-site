@@ -9,17 +9,57 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
+  <style>
+    .books-shelf .book-cover-media {
+      position: relative;
+      display: inline-block;
+      width: fit-content;
+      height: auto;
+      line-height: 0;
+      align-self: flex-end;
+    }
+
+    .books-shelf .book-cover-media img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+    }
+
+    .books-shelf .cover-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.72);
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .books-shelf .cover-button:hover .cover-overlay,
+    .books-shelf .cover-button:focus-visible .cover-overlay {
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <div class="logo">Raea Gragg<small>Author • Illustrator • Animator</small></div>
       <nav aria-label="Primary">
-        <a href="./index.html" data-hue="0.0">Home</a>
-        <a class="active" href="./books.html" data-hue="0.15">Books</a>
-        <a href="./art.html" data-hue="0.33">Art</a>
-        <a href="./projects.html" data-hue="0.55">Upcoming</a>
-        <a href="./about.html" data-hue="0.82">About</a>
+        <a href="./index.html#nav=home" data-hue="0.0">Home</a>
+        <a class="active" href="./books.html#nav=books" data-hue="0.15">Books</a>
+        <a href="./art.html#nav=art" data-hue="0.33">Art</a>
+        <a href="./projects.html#nav=projects" data-hue="0.55">Upcoming</a>
+        <a href="./about.html#nav=about" data-hue="0.82">About</a>
       </nav>
       <div class="nav-toggle" role="button" tabindex="0" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></div>
     </header>
@@ -35,6 +75,7 @@
           <div class="mup-hero-card">
             <a href="./mup-1-2.html#mup1" class="flow-item mup-hero-img-wrap" aria-label="MUP — view details">
               <img src="./assets/Raea%20Gragg%20Books_files/cover%20front%20for%20marketing.avif" alt="MUP Book I cover" />
+              <div class="cover-overlay" aria-hidden="true"><span>Look Inside</span><span class="overlay-arrow">↗</span></div>
             </a>
             <span class="cover-title" style="margin-top:4px">MUP</span>
             <a class="cover-buy mup-hero-buy" href="https://www.amazon.com/Mup-graphic-novel-Raea-Gragg-ebook/dp/B08K52PL5Z?ref_=ast_author_dp_rw&th=1&psc=1&dib=eyJ2IjoiMSJ9.iEHUblQg7BYJDRkVIA5i1y2wRT7EKx6myYaZslTeGCNGhf91AnUF2I01vXLLhox4T0Ox5IzrnNjm4SvtvXaC3Uro1aguq5yDVPo_LLnd2gwLNFiKohgj9wbtlRj2NdW0Pjg4agbmukEqDGTG1HSDQ_lPDWjIBhI1e-dxRqVAf7tLDgPhn4L9PI0i0bjcIZyWfoy9b1TW7p4AnHwCyHwAem6nw8Cq7o0vy94EC23RCl8.zIeeIsnZp21Y6ecfQjFqt25FNwaMJa9TUATW23kcl80&dib_tag=AUTHOR" target="_blank" rel="noopener">Buy ↗</a>
@@ -43,6 +84,7 @@
           <div class="mup-hero-card">
             <a href="./mup-1-2.html#mup2" class="flow-item mup-hero-img-wrap" aria-label="MUP and the Mammoth — view details">
               <img src="./assets/Raea%20Gragg%20Books_files/507c35_40a3e29a61d748989da0f44d99833483~mv2.avif" alt="MUP and the Mammoth cover" />
+              <div class="cover-overlay" aria-hidden="true"><span>Look Inside</span><span class="overlay-arrow">↗</span></div>
             </a>
             <span class="cover-title" style="margin-top:4px">MUP and the Mammoth</span>
             <a class="cover-buy mup-hero-buy" href="https://www.amazon.com/Mup-Mammoth-Raea-Gragg/dp/B0BL4ZM8GW?ref_=ast_author_dp_rw&th=1&psc=1&dib=eyJ2IjoiMSJ9.iEHUblQg7BYJDRkVIA5i1y2wRT7EKx6myYaZslTeGCNGhf91AnUF2I01vXLLhox4T0Ox5IzrnNjm4SvtvXaC3Uro1aguq5yDVPo_LLnd2gwLNFiKohgj9wbtlRj2NdW0Pjg4agbmukEqDGTG1HSDQ_lPDWjIBhI1e-dxRqVAf7tLDgPhn4L9PI0i0bjcIZyWfoy9b1TW7p4AnHwCyHwAem6nw8Cq7o0vy94EC23RCl8.zIeeIsnZp21Y6ecfQjFqt25FNwaMJa9TUATW23kcl80&dib_tag=AUTHOR" target="_blank" rel="noopener">Buy ↗</a>
@@ -63,7 +105,10 @@
 
           <div class="cover-tile">
             <button type="button" class="cover-button" onclick="openBook('little-coconut-island')" aria-label="Browse Little Coconut Island">
-              <img src="./assets/Children%20books/little%20coconut%20island/Lilcoco%20jpegs%20for%20web.jpg" alt="Little Coconut Island cover" />
+              <div class="book-cover-media">
+                <img src="./assets/Children%20books/little%20coconut%20island/Lilcoco%20jpegs%20for%20web.jpg" alt="Little Coconut Island cover" />
+                <div class="cover-overlay" aria-hidden="true">Look Inside ↗</div>
+              </div>
             </button>
             <div class="cover-meta">
               <span class="cover-title">Little Coconut Island</span>
@@ -74,7 +119,10 @@
 
           <div class="cover-tile">
             <button type="button" class="cover-button" onclick="openBook('4-paws')" aria-label="Browse 4 Paws">
-              <img src="./assets/Children%20books/4%20paws/four%20paws%20front%20cover.jpg" alt="4 Paws cover" />
+              <div class="book-cover-media">
+                <img src="./assets/Children%20books/4%20paws/four%20paws%20front%20cover.jpg" alt="4 Paws cover" />
+                <div class="cover-overlay" aria-hidden="true">Look Inside ↗</div>
+              </div>
             </button>
             <div class="cover-meta">
               <span class="cover-title">4 Paws</span>
@@ -85,7 +133,10 @@
 
           <div class="cover-tile">
             <button type="button" class="cover-button" onclick="openBook('manu-o-ku')" aria-label="Browse The Secret of the Manu-o-ku">
-              <img src="./assets/Children%20books/The%20secret%20of%20the%20Manu-o-ku/507c35_890c5b29d1724014be04a3e95d13f7b5~mv2.jpg" alt="The Secret of the Manu-o-ku cover" />
+              <div class="book-cover-media">
+                <img src="./assets/Children%20books/The%20secret%20of%20the%20Manu-o-ku/507c35_890c5b29d1724014be04a3e95d13f7b5~mv2.jpg" alt="The Secret of the Manu-o-ku cover" />
+                <div class="cover-overlay" aria-hidden="true">Look Inside ↗</div>
+              </div>
             </button>
             <div class="cover-meta">
               <span class="cover-title">The Secret of the Manu-o-ku</span>
@@ -95,9 +146,9 @@
           </div>
 
           <div class="cover-tile">
-            <button type="button" class="cover-button" onclick="openBook('purr-noodle')" aria-label="Browse Purr Noodle Loses his Capoodle">
+            <div class="cover-button" aria-label="Purr Noodle Loses his Capoodle">
               <img src="./assets/Purr%20Noodle.jpg" alt="Purr Noodle Loses his Capoodle cover" />
-            </button>
+            </div>
             <div class="cover-meta">
               <span class="cover-title">Purr Noodle Loses his Capoodle</span>
               <a class="cover-buy" href="https://www.amazon.com/Purr-Noodle-Loses-His-Capoodle-ebook/dp/B013NUNEGA?ref_=ast_author_dp_rw&th=1&psc=1&dib=eyJ2IjoiMSJ9.iEHUblQg7BYJDRkVIA5i1y2wRT7EKx6myYaZslTeGCNGhf91AnUF2I01vXLLhox4T0Ox5IzrnNjm4SvtvXaC3Uro1aguq5yDVPo_LLnd2gwLNFiKohgj9wbtlRj2NdW0Pjg4agbmukEqDGTG1HSDQ_lPDWjIBhI1e-dxRqVAf7tLDgPhn4L9PI0i0bjcIZyWfoy9b1TW7p4AnHwCyHwAem6nw8Cq7o0vy94EC23RCl8.zIeeIsnZp21Y6ecfQjFqt25FNwaMJa9TUATW23kcl80&dib_tag=AUTHOR" target="_blank" rel="noopener">Buy ↗</a>
@@ -174,35 +225,30 @@
       'little-coconut-island': {
         title: 'Little Coconut Island',
         images: [
+          './assets/Children%20books/little%20coconut%20island/507c35_dfd8a95bcc9541148031bc6fb50d21c8~mv2_d_4500_4500_s_4_2.jpg',
           './assets/Children%20books/little%20coconut%20island/507c35_44fcd2253c2942c48d64ebaa113ac29e~mv2_d_4500_4500_s_4_2.jpg',
           './assets/Children%20books/little%20coconut%20island/507c35_a74f81e300314f0b88dee70b37adbace~mv2_d_4500_4500_s_4_2.jpg',
-          './assets/Children%20books/little%20coconut%20island/507c35_b59a2c7231ff454a830bd7fc1bdab396~mv2_d_4500_4500_s_4_2.jpg',
-          './assets/Children%20books/little%20coconut%20island/507c35_dfd8a95bcc9541148031bc6fb50d21c8~mv2_d_4500_4500_s_4_2.jpg'
+          './assets/Children%20books/little%20coconut%20island/507c35_b59a2c7231ff454a830bd7fc1bdab396~mv2_d_4500_4500_s_4_2.jpg'
         ]
       },
       '4-paws': {
         title: '4 Paws',
         images: [
           './assets/Children%20books/4%20paws/507c35_31147543d5824737b1123a5a65adfad6~mv2_d_4500_4500_s_4_2.jpg',
-          './assets/Children%20books/4%20paws/507c35_4ab8b6af02b44ca69f9e39999ee40adb~mv2_d_4500_4500_s_4_2.jpg',
+          './assets/Children%20books/4%20paws/507c35_7e8c6aec41b34511b7b4ab061e26d094~mv2_d_4500_4500_s_4_2.jpg',
           './assets/Children%20books/4%20paws/507c35_6f175e2259a04b00b3dd371b8967ae5f~mv2_d_4500_4500_s_4_2.jpg',
-          './assets/Children%20books/4%20paws/507c35_7e8c6aec41b34511b7b4ab061e26d094~mv2_d_4500_4500_s_4_2.jpg'
+          './assets/Children%20books/4%20paws/507c35_4ab8b6af02b44ca69f9e39999ee40adb~mv2_d_4500_4500_s_4_2.jpg'
         ]
       },
       'manu-o-ku': {
         title: 'The Secret of the Manu-o-ku',
         images: [
-          './assets/Children%20books/The%20secret%20of%20the%20Manu-o-ku/507c35_890c5b29d1724014be04a3e95d13f7b5~mv2.jpg',
           './assets/Children%20books/The%20secret%20of%20the%20Manu-o-ku/507c35_b5f3ea3d9018436c84f71111385d89f4~mv2.jpg',
           './assets/Children%20books/The%20secret%20of%20the%20Manu-o-ku/507c35_c44d76b285ad402799be97ae487ef9f6~mv2.jpg',
           './assets/Children%20books/The%20secret%20of%20the%20Manu-o-ku/507c35_e43cf68815b44657a60e939a2ec7f487~mv2.jpg',
           './assets/Children%20books/The%20secret%20of%20the%20Manu-o-ku/507c35_ecaa57c5201a44e1a4710684f3860cf1~mv2.jpg'
         ]
       },
-      'purr-noodle': {
-        title: 'Purr Noodle Loses his Capoodle',
-        images: ['./assets/Purr%20Noodle.jpg']
-      }
     };
 
     const modal = document.getElementById('bookModal');
@@ -223,6 +269,8 @@
       document.getElementById('modalNext').style.visibility = multi ? '' : 'hidden';
     }
     function openBook(key) {
+      const active = document.activeElement;
+      if (active && typeof active.blur === 'function') active.blur();
       activeBook = key;
       index = 0;
       modal.classList.add('open');
@@ -234,6 +282,8 @@
       modal.classList.remove('open');
       modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      const active = document.activeElement;
+      if (active && typeof active.blur === 'function') active.blur();
     }
     function nextImg() { const len = books[activeBook].images.length; index = (index + 1) % len; renderModal(); }
     function prevImg() { const len = books[activeBook].images.length; index = (index - 1 + len) % len; renderModal(); }

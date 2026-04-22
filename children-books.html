@@ -9,6 +9,63 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
+  <style>
+    .book-grid-covers .cover-button {
+      position: relative;
+      display: block;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      overflow: hidden;
+      aspect-ratio: auto;
+    }
+
+    .book-grid-covers .book-cover-media {
+      position: relative;
+      display: block;
+      width: 100%;
+      line-height: 0;
+      z-index: 0;
+    }
+
+    .book-grid-covers .book-cover-media img {
+      display: block;
+      width: 100%;
+      height: auto;
+      position: relative;
+      z-index: 0;
+    }
+
+    .book-grid-covers .book-cover-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.72);
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      pointer-events: none;
+      z-index: 3;
+      min-height: 40px;
+    }
+
+    .book-grid-covers .cover-button:hover .book-cover-overlay,
+    .book-grid-covers .cover-button:focus-visible .book-cover-overlay {
+      opacity: 1;
+    }
+
+    .book-grid-covers .cover-button:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 4px;
+    }
+  </style>
 </head>
 <body>
   <div class="wrap">
@@ -31,42 +88,42 @@
 
         <div class="book-grid-covers">
           <div class="cover-tile">
-            <button type="button" class="cover-button" onclick="openBook('4-paws')">
-              <span class="sr-only">Open 4 Paws</span>
-              <img src="./assets/Children%20books/4%20paws/four%20paws%20front%20cover.jpg" alt="4 Paws cover" />
-            </button>
+            <div class="cover-button" role="button" tabindex="0" onclick="openBook('4-paws')" aria-label="Open 4 Paws">
+              <div class="book-cover-media">
+                <img src="./assets/Children%20books/4%20paws/four%20paws%20front%20cover.jpg" alt="4 Paws cover" />
+                <span class="book-cover-overlay" aria-hidden="true">Look Inside ↗</span>
+              </div>
+            </div>
             <div class="cover-meta"><span class="cover-title">4 Paws</span><a class="cover-buy" href="https://us.amazon.com/Four-Paws-Raea-Gragg/dp/0991626907" target="_blank" rel="noopener">Amazon</a></div>
           </div>
 
           <div class="cover-tile">
-            <button type="button" class="cover-button" onclick="openBook('little-coconut-island')">
-              <span class="sr-only">Open Little Coconut Island</span>
-              <img src="./assets/Children%20books/little%20coconut%20island/Lilcoco%20jpegs%20for%20web.jpg" alt="Little Coconut Island cover" />
-            </button>
+            <div class="cover-button" role="button" tabindex="0" onclick="openBook('little-coconut-island')" aria-label="Open Little Coconut Island">
+              <div class="book-cover-media">
+                <img src="./assets/Children%20books/little%20coconut%20island/Lilcoco%20jpegs%20for%20web.jpg" alt="Little Coconut Island cover" />
+                <span class="book-cover-overlay" aria-hidden="true">Look Inside ↗</span>
+              </div>
+            </div>
             <div class="cover-meta"><span class="cover-title">Little Coconut Island</span><a class="cover-buy" href="https://www.amazon.com/Raea-Gragg/e/B00IH1GVZC" target="_blank" rel="noopener">Amazon</a></div>
           </div>
 
           <div class="cover-tile">
-            <button type="button" class="cover-button" onclick="openBook('manu-o-ku')">
-              <span class="sr-only">Open The Secret of the Manu-o-ku</span>
-              <img src="./assets/Children%20books/The%20secret%20of%20the%20Manu-o-ku/507c35_b5d9fc08a7ba4aef8be5175e0735bc5f~mv2.jpg" alt="The Secret of the Manu-o-ku cover" />
-            </button>
+            <div class="cover-button" role="button" tabindex="0" onclick="openBook('manu-o-ku')" aria-label="Open The Secret of the Manu-o-ku">
+              <div class="book-cover-media">
+                <img src="./assets/Children%20books/The%20secret%20of%20the%20Manu-o-ku/507c35_b5d9fc08a7ba4aef8be5175e0735bc5f~mv2.jpg" alt="The Secret of the Manu-o-ku cover" />
+                <span class="book-cover-overlay" aria-hidden="true">Look Inside ↗</span>
+              </div>
+            </div>
             <div class="cover-meta"><span class="cover-title">The Secret of the Manu-o-ku</span><a class="cover-buy" href="https://www.amazon.com/Raea-Gragg/e/B00IH1GVZC" target="_blank" rel="noopener">Amazon</a></div>
           </div>
 
           <div class="cover-tile">
-            <button type="button" class="cover-button" onclick="openBook('dogs')">
-              <span class="sr-only">Open Dogs</span>
-              <img src="./assets/Children%20books/dogs/507c35_25c6b22866704e4883ec792fd40107c9~mv2_d_3300_2550_s_4_2.jpg" alt="Dogs cover" />
-            </button>
-            <div class="cover-meta"><span class="cover-title">Dogs</span><a class="cover-buy" href="https://www.amazon.com/Raea-Gragg/e/B00IH1GVZC" target="_blank" rel="noopener">Amazon</a></div>
-          </div>
-
-          <div class="cover-tile">
-            <button type="button" class="cover-button" onclick="openBook('nibbler')">
-              <span class="sr-only">Open Nibbler</span>
-              <img src="./assets/Children%20books/Nibbler/1.jpg" alt="Nibbler cover" />
-            </button>
+            <div class="cover-button" role="button" tabindex="0" onclick="openBook('nibbler')" aria-label="Open Nibbler">
+              <div class="book-cover-media">
+                <img src="./assets/Children%20books/Nibbler/1.jpg" alt="Nibbler cover" />
+                <span class="book-cover-overlay" aria-hidden="true">Look Inside ↗</span>
+              </div>
+            </div>
             <div class="cover-meta"><span class="cover-title">Nibbler</span><a class="cover-buy" href="https://www.amazon.com/Raea-Gragg/e/B00IH1GVZC" target="_blank" rel="noopener">Amazon</a></div>
           </div>
         </div>
@@ -120,17 +177,6 @@
           './assets/Children%20books/The%20secret%20of%20the%20Manu-o-ku/507c35_c44d76b285ad402799be97ae487ef9f6~mv2.jpg',
           './assets/Children%20books/The%20secret%20of%20the%20Manu-o-ku/507c35_e43cf68815b44657a60e939a2ec7f487~mv2.jpg',
           './assets/Children%20books/The%20secret%20of%20the%20Manu-o-ku/507c35_ecaa57c5201a44e1a4710684f3860cf1~mv2.jpg'
-        ]
-      },
-      'dogs': {
-        title: 'Dogs',
-        images: [
-          './assets/Children%20books/dogs/507c35_25c6b22866704e4883ec792fd40107c9~mv2_d_3300_2550_s_4_2.jpg',
-          './assets/Children%20books/dogs/507c35_2ea3a458b09b49a1a32e3fdd3a9b4900~mv2_d_3300_2550_s_4_2.jpg',
-          './assets/Children%20books/dogs/507c35_55eecf65e7804b82a3cdc59110217a77~mv2_d_3300_2550_s_4_2.jpg',
-          './assets/Children%20books/dogs/507c35_8f90936dfa984fc28eec032f8b7affeb~mv2_d_3300_2550_s_4_2.jpg',
-          './assets/Children%20books/dogs/507c35_909190c7c42841ed9fd542685ec6b644~mv2_d_3300_2550_s_4_2.jpg',
-          './assets/Children%20books/dogs/507c35_bcf07dfad09046208b2cf1f5fb60c51e~mv2_d_3300_2550_s_4_2.jpg'
         ]
       },
       'nibbler': {

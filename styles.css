@@ -135,8 +135,9 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .book-detail-layout{display:flex;gap:var(--s4);align-items:flex-start;margin-top:var(--s3)}
 .book-detail-text{flex:1;min-width:0}
 .book-cover-panel{flex-shrink:0;width:220px}
-.mup-detail-cover{width:100%;aspect-ratio:auto;min-height:0;padding:6px}
-.mup-detail-cover img{width:100%;height:auto;object-fit:unset;max-height:none}
+.mup-detail-cover{display:block;width:fit-content;padding:8px;margin:0}
+.mup-detail-cover img{width:200px;height:305px;object-fit:cover;object-position:center top;display:block}
+.mup-detail-cover:hover{cursor:pointer}
 .cover-thumb-strip{display:flex;gap:5px;margin-top:8px}
 .cover-thumb{appearance:none;border:1px solid var(--line);background:var(--panel);padding:3px;cursor:pointer;width:56px;flex-shrink:0}
 .cover-thumb img{width:100%;height:auto;display:block}
@@ -149,21 +150,32 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .mup-hero-covers,.novels-hero{text-align:center}
 .mup-hero-title{text-align:center;margin-bottom:var(--s4)}
 .mup-hero-grid{display:flex;flex-direction:row;gap:32px;align-items:flex-start;justify-content:center}
-.mup-hero-card{display:flex;flex-direction:column;align-items:center;gap:8px}
+.mup-hero-card{display:flex;flex-direction:column;align-items:center;gap:8px;position:relative}
 .mup-hero-card:hover .flow-item{border-color:var(--ink)}
-.mup-hero-img-wrap{padding:8px;margin:0;display:block;width:fit-content}
-.mup-hero-img-wrap img{width:200px;height:auto;display:block}
+.mup-hero-img-wrap{padding:8px;margin:0;display:block;width:fit-content;position:relative;overflow:hidden}
+.mup-hero-img-wrap img{width:200px;height:305px;object-fit:cover;object-position:center top;display:block}
+.cover-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;background:rgba(0,0,0,.72);color:#fff;opacity:0;transition:opacity .2s ease;pointer-events:none;text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;font-weight:600;z-index:2}
+.mup-hero-card .cover-overlay{inset:8px auto auto 8px;width:200px;height:305px}
+.cover-overlay svg{width:18px;height:18px;display:block}
+.cover-tile:hover .cover-overlay,.mup-hero-card:hover .cover-overlay{opacity:1}
+.cover-overlay .overlay-arrow{font-size:1rem;line-height:1}
 .mup-hero-buy{display:block;text-align:center}
 
 .book-grid-covers{margin-top:var(--s4);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-.cover-tile{display:flex;flex-direction:column;gap:8px;border:1px solid #d8d0c100;background:var(--panel);padding:clamp(6px,1.4vw,10px);box-sizing:border-box}
+.cover-tile{display:flex;flex-direction:column;gap:8px;border:1px solid #d8d0c100;background:var(--panel);padding:clamp(6px,1.4vw,10px);box-sizing:border-box;position:relative}
 .cover-tile:hover{border-color:var(--ink)}
-.cover-button{appearance:none;border:0;background:transparent;padding:0;box-sizing:border-box;cursor:pointer;position:relative;aspect-ratio:3/4;min-height:300px;display:flex;align-items:flex-end;justify-content:center}
-.cover-button img{width:100%;height:auto;object-fit:contain;object-position:center bottom;background:#eee8dc;display:block;align-self:flex-end}
-.cover-button .open-hint{position:absolute;right:14px;bottom:14px;border:1px solid var(--line);background:rgba(250,247,241,.92);padding:4px 8px;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.cover-button{appearance:none;border:0;background:transparent;padding:0;box-sizing:border-box;cursor:pointer;position:relative;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;overflow:hidden}
+.cover-button img{width:100%;height:auto;object-fit:contain;object-position:center bottom;background:#eee8dc;display:block;position:relative;z-index:0}
+.cover-button .open-hint{position:absolute;right:14px;bottom:14px;border:1px solid var(--line);background:rgba(250,247,241,.92);padding:4px 8px;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);z-index:2}
+.cover-button .book-cover-media{position:relative;display:block;width:100%;height:auto;line-height:0}
+.cover-button .book-cover-media img{display:block;width:100%;height:auto}
+.cover-button .book-cover-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.72);color:#fff;opacity:0;transition:opacity .2s ease;text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;font-weight:600;pointer-events:none;z-index:2}
+.cover-button:hover .book-cover-overlay,.cover-button:focus-visible .book-cover-overlay{opacity:1}
 .cover-meta{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .cover-title{font-family:"EB Garamond",serif;font-size:1.08rem;line-height:1.1}
-.cover-buy{font-size:.67rem;text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid var(--line);padding-bottom:1px;color:var(--muted)}
+.book-grid-covers .cover-meta,.books-shelf .cover-meta{align-items:flex-start}
+.book-grid-covers .cover-title,.books-shelf .cover-title{display:block;min-height:2.2em}
+.cover-buy{font-size:.67rem;text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid var(--line);padding-bottom:1px;color:var(--muted);white-space:nowrap;display:inline-flex;align-items:center;line-height:1;margin-top:5px}
 .cover-buy:hover{color:var(--ink);border-color:var(--ink)}
 .book-return-row{margin-top:var(--s5);display:flex;justify-content:center}
 .cover-blurb{font-size:.82rem;color:var(--muted);line-height:1.55;margin-top:6px}
@@ -174,16 +186,13 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .splat-bg canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
 .books-shelf{display:flex;flex-wrap:wrap;gap:28px 20px;margin-top:var(--s4)}
 .books-shelf .cover-tile{width:200px;flex:0 0 200px}
-.books-shelf .cover-button{width:100%;min-height:0;aspect-ratio:2/3}
-.books-shelf .cover-button img{object-position:center bottom}
-.books-shelf .cover-title{padding-bottom:30px}
 .novels-grid{display:flex;flex-direction:row;gap:32px;align-items:flex-start;justify-content:center;margin-top:var(--s4)}
 .novels-grid .cover-tile{width:auto;flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;border:none;background:transparent;padding:0;box-sizing:border-box}
 .novels-grid .mup-hero-img-wrap{padding:8px;margin:0;display:block;width:fit-content}
-.novels-grid .mup-hero-img-wrap img{width:200px;height:auto;display:block}
+.novels-grid .mup-hero-img-wrap img{width:200px;height:305px;object-fit:cover;object-position:center top;display:block}
 .novels-grid .cover-meta{justify-content:center;width:100%}
 .novels-grid .cover-blurb{text-align:left;width:200px}
-.novels-hero .sub,.novels-hero .cover-blurb,.mup-hero-covers .sub{max-width:38ch;margin-left:auto;margin-right:auto;text-align:center}
+.novels-hero .sub,.novels-hero .cover-blurb,.mup-hero-covers .sub{max-width:38ch;margin-left:auto;margin-right:auto}
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 .book-modal{position:fixed;inset:0;background:rgba(20,18,15,.9);z-index:1000;display:none;align-items:center;justify-content:center}
