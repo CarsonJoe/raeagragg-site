@@ -2,15 +2,15 @@
 
 `/`
 ├─ `index.html`                                Add more stuff, check og
-│  ├─ Home                                     
-│  ├─ Featured MUP covers                      
+│  ├─ Home
+│  ├─ Featured MUP covers
 │  ├─ Primary nav
 │  └─ Links to:
 │     ├─ `books.html`
 │     ├─ `art.html`
 │     ├─ `projects.html`
 │     └─ `about.html`
-├─ `books.html`                                switch around some series imgs, minor styling
+├─ `books.html`
 │  ├─ Books landing page
 │  ├─ `MUP`
 │  │  ├─ Two hero covers
@@ -35,12 +35,7 @@
 │  │  ├─ Cover detail
 │  │  └─ Return to Books link
 │  └─ Development galleries
-├─ `children-books.html`                        removed
-│  ├─ Dedicated children's books page
-│  ├─ Cover grid
-│  ├─ Gallery modal
-│  └─ Back to Books link
-├─ `projects.html`                              *** needs much work. reuse styles. need pumpkin assets (use pdf file from email) add pw 
+├─ `projects.html`
 │  ├─ Upcoming projects
 │  └─ Private preview links
 ├─ `art.html`                                   maybe move around and add soem titles//describe wood burn
@@ -54,7 +49,7 @@
 │  ├─ Process / current focus
 │  ├─ Photo grid
 │  └─ Contact / social links
-                                                *Add private content to upcoming
+                                                *general speed loading improvements. modularity
 
 
 ├─ `canvas.html`

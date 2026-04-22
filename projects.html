@@ -33,26 +33,28 @@
         <p class="section-kicker">Project</p>
         <h2>Cicada Rising</h2>
 
-        <div class="project-cover">
+        <p class="story-intro">A look at two developing books. Preview pages below are password protected at the full-book level.</p>
+
+        <div class="project-cover project-cover-centered">
           <img src="./assets/cicada/IMG_2954.jpeg" alt="Cicada Rising Vol. one — cover" />
         </div>
 
         <p class="project-synopsis">A synopsis for Cicada Rising will appear here — coming soon.</p>
 
-        <div class="concept-grid">
-          <figure>
+        <div class="flow-gallery project-flow-gallery">
+          <figure class="flow-item left narrow">
             <img src="./assets/cicada/IMG_2950.jpeg" alt="Cicada Rising concept art" />
           </figure>
-          <figure>
+          <figure class="flow-item right">
             <img src="./assets/cicada/IMG_2952.jpeg" alt="Cicada Rising concept art" />
           </figure>
-          <figure>
+          <figure class="flow-item center wide offset-down">
             <img src="./assets/cicada/IMG_2953.jpeg" alt="Cicada Rising concept art" />
           </figure>
         </div>
 
         <div class="project-cta">
-          <a class="btn primary" href="./cicada-rising-private.html">Full Book &amp; Details →</a>
+          <a class="btn primary protected-link" href="./assets/cicada/Cicada%20Rising,%20book%20one,%20MASTER%20-%20April%202026.pdf" data-protected-link="cicada">Full Book &amp; Details →</a>
         </div>
       </section>
 
@@ -60,23 +62,43 @@
         <p class="section-kicker">Project</p>
         <h2>Pumpkin</h2>
 
-        <div class="project-cover">
-          <img src="./assets/lil%20pump_edited.png" alt="Pumpkin — character design" />
-        </div>
+        <div class="flow-gallery project-flow-gallery">
+          <p class="project-synopsis flow-copy">A synopsis for Pumpkin will appear here — coming soon.</p>
 
-        <p class="project-synopsis">A synopsis for Pumpkin will appear here — coming soon.</p>
-
-        <div class="concept-grid">
-          <figure>
-            <img src="./assets/Mup%201%20%26%202/Raea%20and%20pump_edited.png" alt="Pumpkin concept art" />
+          <figure class="flow-item left wide">
+            <img src="./assets/pumpkin/pumpkin_page_1.jpg" alt="Pumpkin storyboard page 1" />
+          </figure>
+          <figure class="flow-item right narrow offset-up">
+            <img src="./assets/pumpkin/pumpkin_page_2.jpg" alt="Pumpkin storyboard page 2" />
+          </figure>
+          <figure class="flow-item center wide offset-down">
+            <img src="./assets/pumpkin/Pumpkin_sample.jpg" alt="Pumpkin sample page" />
+          </figure>
+          <figure class="flow-item left narrow">
+            <img src="./assets/pumpkin/IMG_0250.jpeg" alt="Pumpkin concept art" />
           </figure>
         </div>
 
         <div class="project-cta">
-          <a class="btn primary" href="./pumpkin-private.html">Full Book &amp; Details →</a>
+          <a class="btn primary protected-link" href="./assets/pumpkin/pumpkin_storyboard_june_%2029.pdf" data-protected-link="pumpkin">Full Book &amp; Details →</a>
         </div>
       </section>
     </main>
+
+    <div id="passwordModal" class="password-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="passwordModalTitle">
+      <div class="password-modal-card">
+        <button class="password-modal-close" id="passwordModalClose" type="button" aria-label="Close password dialog">✕</button>
+        <p class="section-kicker" id="passwordModalTitle">Protected content</p>
+        <h3>Enter password</h3>
+        <p class="password-modal-copy">This preview is password protected.</p>
+        <form id="passwordForm" class="password-modal-form">
+          <label class="sr-only" for="passwordInput">Password</label>
+          <input id="passwordInput" name="password" type="password" autocomplete="current-password" placeholder="Password" />
+          <button class="btn primary" type="submit">Unlock</button>
+        </form>
+        <p id="passwordError" class="password-modal-error" aria-live="polite"></p>
+      </div>
+    </div>
 
     <footer>
       <div>© <span id="year"></span> Raea Gragg</div>
@@ -89,6 +111,7 @@
   </div>
   <script>document.getElementById('year').textContent = new Date().getFullYear();
   (function(){var t=document.querySelector('.nav-toggle'),n=document.querySelector('nav[aria-label="Primary"]');if(!t||!n)return;t.addEventListener('click',function(){var o=t.getAttribute('aria-expanded')==='true';t.setAttribute('aria-expanded',String(!o));n.classList.toggle('nav-open',!o);});document.addEventListener('click',function(e){if(!t.contains(e.target)&&!n.contains(e.target)){t.setAttribute('aria-expanded','false');n.classList.remove('nav-open');}});})();
+  (function(){var PASSWORD='password';var unlocked=false;var pendingHref='';var modal=document.getElementById('passwordModal');var form=document.getElementById('passwordForm');var input=document.getElementById('passwordInput');var error=document.getElementById('passwordError');var closeBtn=document.getElementById('passwordModalClose');function openModal(href){pendingHref=href;error.textContent='';modal.classList.add('open');modal.setAttribute('aria-hidden','false');window.setTimeout(function(){input.focus();input.select();},0);}function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');pendingHref='';error.textContent='';form.reset();}function unlock(){if(!pendingHref)return;unlocked=true;var href=pendingHref;closeModal();window.open(href,'_blank','noopener');}document.querySelectorAll('a[data-protected-link]').forEach(function(link){link.addEventListener('click',function(e){if(unlocked)return;e.preventDefault();openModal(link.getAttribute('href'));});});form.addEventListener('submit',function(e){e.preventDefault();if(input.value===PASSWORD){unlock();}else{error.textContent='Incorrect password.';input.focus();input.select();}});closeBtn.addEventListener('click',closeModal);modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();});})();
   </script>
   <script src="./texture.js"></script>
   <script src="./nav-splat.js"></script>
