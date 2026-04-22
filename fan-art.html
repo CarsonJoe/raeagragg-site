@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Raea Gragg — Fan Art Studio</title>
+  <meta name="description" content="A playful fan art studio where children can paint splatter drawings, save them, and share them with Raea Gragg." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <style>
+    :root{
+      --studio-paper:#fbf3e4;
+      --studio-panel:#fffaf2;
+      --studio-line:#d7cdbb;
+      --studio-shadow:0 24px 80px rgba(77, 56, 29, .12);
+    }
+    body{
+      background:
+        radial-gradient(circle at top left, rgba(255, 191, 97, .18), transparent 28%),
+        radial-gradient(circle at top right, rgba(255, 93, 93, .12), transparent 26%),
+        linear-gradient(180deg, #fff8ee 0%, #f6efe2 100%);
+    }
+    .studio-wrap{
+      max-width:1280px;
+      margin:0 auto;
+      padding:var(--s4) var(--s3) var(--s6);
+    }
+    .studio-panel{
+      border:1px solid var(--studio-line);
+      background:rgba(255, 250, 242, .92);
+      box-shadow:var(--studio-shadow);
+      backdrop-filter:blur(6px);
+    }
+    .studio-shell{
+      margin-top:0;
+      display:grid;
+      grid-template-columns:minmax(280px, 360px) minmax(0, 1fr);
+      gap:22px;
+      align-items:start;
+    }
+    .control-panel{
+      padding:22px;
+      position:sticky;
+      top:20px;
+    }
+    .control-panel h2{
+      margin:0;
+      font-size:2rem;
+    }
+    .control-grid{
+      display:grid;
+      gap:16px;
+      margin-top:20px;
+    }
+    .field{
+      display:grid;
+      gap:8px;
+    }
+    .field label,
+    .field legend{
+      font-size:.74rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--muted);
+    }
+    .field input[type="text"]{
+      min-height:46px;
+      border:1px solid var(--studio-line);
+      background:#fff;
+      padding:0 14px;
+      font:inherit;
+      color:var(--ink);
+    }
+    .slider-row{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:10px;
+      align-items:center;
+    }
+    .slider-row output{
+      min-width:3ch;
+      font-size:.84rem;
+      color:var(--ink);
+      text-align:right;
+    }
+    .field input[type="range"]{
+      width:100%;
+      accent-color:var(--ink);
+    }
+    .color-tools{
+      display:grid;
+      gap:10px;
+    }
+    .tool-grid{
+      display:grid;
+      grid-template-columns:repeat(5, minmax(0, 1fr));
+      gap:8px;
+    }
+    .tool-btn{
+      min-height:42px;
+      border:1px solid var(--studio-line);
+      background:#fff;
+      color:var(--ink);
+      font:inherit;
+      cursor:pointer;
+      transition:border-color .15s ease, background .15s ease, color .15s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px;
+    }
+    .tool-btn:hover,
+    .tool-btn:focus-visible{
+      border-color:var(--ink);
+      outline:none;
+    }
+    .tool-btn.active{
+      background:var(--ink);
+      color:var(--paper);
+      border-color:var(--ink);
+    }
+    .tool-btn svg{
+      width:18px;
+      height:18px;
+      display:block;
+    }
+    .color-main{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .color-main input[type="color"]{
+      width:54px;
+      height:54px;
+      border:none;
+      background:transparent;
+      padding:0;
+      cursor:pointer;
+    }
+    .swatches{
+      display:grid;
+      grid-template-columns:repeat(6, minmax(0, 1fr));
+      gap:8px;
+    }
+    .swatch{
+      width:100%;
+      aspect-ratio:1;
+      border:2px solid rgba(31, 29, 25, .12);
+      cursor:pointer;
+      transition:transform .15s ease, border-color .15s ease;
+    }
+    .swatch:hover,
+    .swatch:focus-visible{
+      transform:translateY(-1px) scale(1.03);
+      border-color:var(--ink);
+      outline:none;
+    }
+    .studio-actions{
+      display:grid;
+      gap:10px;
+      margin-top:6px;
+    }
+    .studio-actions .btn{
+      justify-content:center;
+      width:100%;
+    }
+    .studio-board{
+      padding:22px;
+    }
+    .canvas-stage{
+      position:relative;
+      border:1px solid var(--studio-line);
+      background:
+        radial-gradient(circle at 12% 16%, rgba(255,255,255,.82), transparent 20%),
+        linear-gradient(180deg, #fff8ef 0%, var(--studio-paper) 100%);
+      box-shadow:inset 0 0 0 10px rgba(255,255,255,.32);
+      overflow:hidden;
+    }
+    .canvas-stage::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(118, 95, 61, .05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(118, 95, 61, .05) 1px, transparent 1px);
+      background-size:28px 28px;
+      pointer-events:none;
+      opacity:.2;
+    }
+    #fanCanvas{
+      position:relative;
+      z-index:1;
+      display:block;
+      width:100%;
+      aspect-ratio:4 / 3;
+      background:#f6f2e8;
+      touch-action:none;
+      cursor:crosshair;
+    }
+    @media (max-width:980px){
+      .studio-shell{
+        grid-template-columns:1fr;
+      }
+      .control-panel{
+        position:static;
+      }
+    }
+    @media (max-width:700px){
+      .studio-wrap{
+        padding-top:24px;
+      }
+      .tool-grid{
+        grid-template-columns:repeat(3, minmax(0, 1fr));
+      }
+      .swatches{
+        grid-template-columns:repeat(3, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="studio-wrap">
+    <main>
+      <section id="studio" class="studio-shell" aria-label="Fan art drawing studio">
+        <aside class="studio-panel control-panel">
+          <h2>Controls</h2>
+
+          <div class="control-grid">
+            <fieldset class="field">
+              <legend>Paint Color</legend>
+              <div class="color-tools">
+                <div class="color-main">
+                  <input id="paintColor" type="color" value="#ff5b5b" aria-label="Paint color" />
+                  <span id="colorValue">#ff5b5b</span>
+                </div>
+                <div class="swatches" id="swatches"></div>
+              </div>
+            </fieldset>
+
+            <div class="field">
+              <label>Tool</label>
+              <div class="tool-grid" id="toolButtons" role="group" aria-label="Drawing tools">
+                <button class="tool-btn active" type="button" data-tool="splatter" aria-label="Splatter tool">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4.2"></circle>
+                    <circle cx="5.3" cy="9.1" r="1.4"></circle>
+                    <circle cx="8.2" cy="4.8" r="1.7"></circle>
+                    <circle cx="17.9" cy="5.6" r="1.3"></circle>
+                    <circle cx="19.5" cy="11.2" r="1.9"></circle>
+                    <circle cx="6.7" cy="16.9" r="1.8"></circle>
+                    <circle cx="15.9" cy="18.4" r="1.2"></circle>
+                  </svg>
+                </button>
+                <button class="tool-btn" type="button" data-tool="brush" aria-label="Brush tool">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14 4l6 6"></path>
+                    <path d="M13 5l6 6"></path>
+                    <path d="M4 20c3.3 0 5.4-1.2 6.4-3.7l6.8-6.8-2.7-2.7-6.8 6.8C5.2 14.6 4 16.7 4 20z"></path>
+                  </svg>
+                </button>
+                <button class="tool-btn" type="button" data-tool="pencil" aria-label="Pencil tool">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 20l4.2-1.1L18.6 8.5l-3.1-3.1L5.1 15.8 4 20z"></path>
+                    <path d="M14.9 6l3.1 3.1"></path>
+                  </svg>
+                </button>
+                <button class="tool-btn" type="button" data-tool="pen" aria-label="Pen tool">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 4l4.5 4.5-7.8 7.8L4.2 17.8l1.5-4.5L12 4z"></path>
+                    <path d="M12 4l2.2 2.2"></path>
+                    <path d="M13.6 17.6c.8.7 1.2 1.5 1.2 2.4 0 .9-.6 1.5-1.5 1.5-1 0-1.8-.8-1.8-1.8 0-.8.4-1.6 1.1-2.1"></path>
+                  </svg>
+                </button>
+                <button class="tool-btn" type="button" data-tool="eraser" aria-label="Eraser tool">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M8.5 19L3.8 14.3a2 2 0 010-2.8l6.4-6.4a2 2 0 012.8 0l7.2 7.2a2 2 0 010 2.8L16.3 19"></path>
+                    <path d="M8 19h12"></path>
+                    <path d="M11 8l5 5"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="field">
+              <label id="brushSizeLabel" for="brushSize">Brush Size</label>
+              <div class="slider-row">
+                <input id="brushSize" type="range" min="4" max="42" step="1" value="18" />
+                <output id="brushSizeValue" for="brushSize">18</output>
+              </div>
+            </div>
+
+            <div class="field">
+              <label id="detailLabel" for="splatterAmount">Splatter Amount</label>
+              <div class="slider-row">
+                <input id="splatterAmount" type="range" min="4" max="26" step="1" value="14" />
+                <output id="splatterAmountValue" for="splatterAmount">14</output>
+              </div>
+            </div>
+
+            <div class="field">
+              <label id="opacityLabel" for="paintOpacity">Paint Opacity</label>
+              <div class="slider-row">
+                <input id="paintOpacity" type="range" min="30" max="100" step="1" value="78" />
+                <output id="paintOpacityValue" for="paintOpacity">78%</output>
+              </div>
+            </div>
+          </div>
+
+          <div class="studio-actions">
+            <button id="clearArt" class="btn secondary" type="button">Clear Canvas</button>
+            <button id="saveArt" class="btn primary" type="button">Save PNG</button>
+            <button id="sendArt" class="btn secondary" type="button">Send Art to Raea</button>
+          </div>
+        </aside>
+
+        <article class="studio-panel studio-board">
+          <div class="canvas-stage">
+            <canvas id="fanCanvas" aria-label="Fan art drawing canvas"></canvas>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Raea Gragg</div>
+      <div><a href="./index.html">Back to Home</a></div>
+    </footer>
+  </div>
+  <script src="./texture.js"></script>
+  <script src="./nav-splat.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var canvas = document.getElementById('fanCanvas');
+      var ctx = canvas.getContext('2d');
+      var background = '#f6f2e8';
+      var drawing = false;
+      var lastPoint = null;
+      var dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+      var emailAddress = 'hello@raeagragg.com';
+      var swatchesRoot = document.getElementById('swatches');
+      var toolButtons = document.getElementById('toolButtons');
+      var recentColorsKey = 'raea-fan-art-recent-colors';
+      var defaultSwatches = ['#ff5b5b', '#ff9f43', '#ffd93d', '#2ecc71', '#3da5ff', '#b26bff'];
+      var selectedTool = 'splatter';
+
+      var statusBox = document.getElementById('statusBox');
+      var colorInput = document.getElementById('paintColor');
+      var colorValue = document.getElementById('colorValue');
+      var brushSizeInput = document.getElementById('brushSize');
+      var splatterAmountInput = document.getElementById('splatterAmount');
+      var paintOpacityInput = document.getElementById('paintOpacity');
+      var brushSizeLabel = document.getElementById('brushSizeLabel');
+      var detailLabel = document.getElementById('detailLabel');
+      var opacityLabel = document.getElementById('opacityLabel');
+      var toolConfigs = {
+        splatter: {
+          brushLabel: 'Brush Size',
+          detailLabel: 'Splatter Amount',
+          opacityLabel: 'Paint Opacity',
+          brush: { min: 4, max: 42, step: 1, value: 18, suffix: '' },
+          detail: { min: 4, max: 26, step: 1, value: 14, suffix: '' },
+          opacity: { min: 30, max: 100, step: 1, value: 78, suffix: '%' }
+        },
+        brush: {
+          brushLabel: 'Brush Size',
+          detailLabel: 'Bristle Spread',
+          opacityLabel: 'Paint Load',
+          brush: { min: 6, max: 52, step: 1, value: 20, suffix: '' },
+          detail: { min: 0, max: 100, step: 1, value: 44, suffix: '%' },
+          opacity: { min: 20, max: 100, step: 1, value: 72, suffix: '%' }
+        },
+        pencil: {
+          brushLabel: 'Point Size',
+          detailLabel: 'Grain',
+          opacityLabel: 'Shade',
+          brush: { min: 1, max: 12, step: 1, value: 4, suffix: '' },
+          detail: { min: 0, max: 100, step: 1, value: 65, suffix: '%' },
+          opacity: { min: 10, max: 100, step: 1, value: 52, suffix: '%' }
+        },
+        pen: {
+          brushLabel: 'Nib Size',
+          detailLabel: 'Ink Flow',
+          opacityLabel: 'Density',
+          brush: { min: 1, max: 16, step: 1, value: 5, suffix: '' },
+          detail: { min: 0, max: 100, step: 1, value: 82, suffix: '%' },
+          opacity: { min: 25, max: 100, step: 1, value: 94, suffix: '%' }
+        },
+        eraser: {
+          brushLabel: 'Eraser Size',
+          detailLabel: 'Soft Edge',
+          opacityLabel: 'Strength',
+          brush: { min: 8, max: 72, step: 1, value: 28, suffix: '' },
+          detail: { min: 0, max: 100, step: 1, value: 24, suffix: '%' },
+          opacity: { min: 30, max: 100, step: 1, value: 100, suffix: '%' }
+        }
+      };
+
+      function setStatus(message) {
+        if (!statusBox) return;
+        statusBox.textContent = message;
+      }
+
+      function normalizeHexColor(value) {
+        if (!value) return '';
+        var color = String(value).trim().toLowerCase();
+        if (color.charAt(0) !== '#') color = '#' + color;
+        if (!/^#[0-9a-f]{6}$/.test(color)) return '';
+        return color;
+      }
+
+      function loadRecentColors() {
+        try {
+          var raw = JSON.parse(window.localStorage.getItem(recentColorsKey) || '[]');
+          if (!Array.isArray(raw)) return [];
+          return raw.map(normalizeHexColor).filter(Boolean).slice(0, 6);
+        } catch (err) {
+          return [];
+        }
+      }
+
+      function saveRecentColors(colors) {
+        try {
+          window.localStorage.setItem(recentColorsKey, JSON.stringify(colors.slice(0, 6)));
+        } catch (err) {}
+      }
+
+      function buildSwatchList() {
+        var recents = loadRecentColors();
+        var colors = recents.slice();
+        var i;
+        for (i = 0; i < defaultSwatches.length && colors.length < 6; i++) {
+          if (colors.indexOf(defaultSwatches[i]) === -1) colors.push(defaultSwatches[i]);
+        }
+        return colors.slice(0, 6);
+      }
+
+      function renderSwatches() {
+        var colors = buildSwatchList();
+        swatchesRoot.innerHTML = '';
+        colors.forEach(function (color, index) {
+          var button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'swatch';
+          button.setAttribute('data-color', color);
+          button.setAttribute('aria-label', 'Paint color ' + (index + 1));
+          button.style.background = color;
+          swatchesRoot.appendChild(button);
+        });
+      }
+
+      function rememberColor(color) {
+        var normalized = normalizeHexColor(color);
+        if (!normalized) return;
+        var colors = loadRecentColors().filter(function (entry) {
+          return entry !== normalized;
+        });
+        colors.unshift(normalized);
+        saveRecentColors(colors);
+        renderSwatches();
+      }
+
+      function updateOutput(id, value) {
+        document.getElementById(id).textContent = value;
+      }
+
+      function updateSliderOutput(input, outputId, suffix) {
+        updateOutput(outputId, input.value + (suffix || ''));
+      }
+
+      function applySliderConfig(input, config) {
+        input.min = config.min;
+        input.max = config.max;
+        input.step = config.step;
+        input.value = config.value;
+      }
+
+      function applyTool(toolName) {
+        var config = toolConfigs[toolName];
+        if (!config) return;
+        selectedTool = toolName;
+        brushSizeLabel.textContent = config.brushLabel;
+        detailLabel.textContent = config.detailLabel;
+        opacityLabel.textContent = config.opacityLabel;
+        applySliderConfig(brushSizeInput, config.brush);
+        applySliderConfig(splatterAmountInput, config.detail);
+        applySliderConfig(paintOpacityInput, config.opacity);
+        updateSliderOutput(brushSizeInput, 'brushSizeValue', config.brush.suffix);
+        updateSliderOutput(splatterAmountInput, 'splatterAmountValue', config.detail.suffix);
+        updateSliderOutput(paintOpacityInput, 'paintOpacityValue', config.opacity.suffix);
+        toolButtons.querySelectorAll('[data-tool]').forEach(function (button) {
+          button.classList.toggle('active', button.getAttribute('data-tool') === toolName);
+        });
+      }
+
+      function hexToRgb(hex) {
+        var value = hex.replace('#', '');
+        if (value.length === 3) {
+          value = value.charAt(0) + value.charAt(0) + value.charAt(1) + value.charAt(1) + value.charAt(2) + value.charAt(2);
+        }
+        return {
+          r: parseInt(value.slice(0, 2), 16),
+          g: parseInt(value.slice(2, 4), 16),
+          b: parseInt(value.slice(4, 6), 16)
+        };
+      }
+
+      function fillBackground() {
+        ctx.save();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.fillStyle = background;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.restore();
+      }
+
+      function resizeCanvas() {
+        var snapshot = null;
+        if (canvas.width && canvas.height) {
+          snapshot = document.createElement('canvas');
+          snapshot.width = canvas.width;
+          snapshot.height = canvas.height;
+          snapshot.getContext('2d').drawImage(canvas, 0, 0);
+        }
+
+        var rect = canvas.getBoundingClientRect();
+        canvas.width = Math.max(1, Math.round(rect.width * dpr));
+        canvas.height = Math.max(1, Math.round(rect.height * dpr));
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        fillBackground();
+
+        if (snapshot) {
+          ctx.drawImage(snapshot, 0, 0, snapshot.width, snapshot.height, 0, 0, rect.width, rect.height);
+        }
+      }
+
+      function clearCanvas() {
+        fillBackground();
+        setStatus('Canvas cleared. Start a new fan art piece whenever you want.');
+      }
+
+      function getPointerPos(event) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+          x: event.clientX - rect.left,
+          y: event.clientY - rect.top
+        };
+      }
+
+      function drawBlob(x, y, r, color, alpha) {
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      function drawSegment(x1, y1, x2, y2, width, color, alpha) {
+        ctx.globalAlpha = alpha;
+        ctx.strokeStyle = color;
+        ctx.lineWidth = width;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+      }
+
+      function drawDrip(x, y, angle, length, width, color, alpha) {
+        var x2 = x + Math.cos(angle) * length;
+        var y2 = y + Math.sin(angle) * length;
+        var dx = x2 - x;
+        var dy = y2 - y;
+        var len = Math.sqrt(dx * dx + dy * dy);
+        if (len < 1) return;
+        var nx = -dy / len;
+        var ny = dx / len;
+        var half = width * 0.5;
+        var curve = (Math.random() - 0.5) * width * 2.4;
+        var mx = (x + x2) * 0.5 + nx * curve;
+        var my = (y + y2) * 0.5 + ny * curve;
+
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(x + nx * half, y + ny * half);
+        ctx.quadraticCurveTo(mx + nx * half * 0.3, my + ny * half * 0.3, x2, y2);
+        ctx.quadraticCurveTo(mx - nx * half * 0.3, my - ny * half * 0.3, x - nx * half, y - ny * half);
+        ctx.closePath();
+        ctx.fill();
+        drawBlob(x2, y2, half * (0.8 + Math.random() * 0.6), color, alpha * 0.94);
+      }
+
+      function stampSplatter(x, y, dx, dy) {
+        var brush = Number(brushSizeInput.value);
+        var splatterAmount = Number(splatterAmountInput.value);
+        var opacity = Number(paintOpacityInput.value) / 100;
+        var speed = Math.min(Math.sqrt(dx * dx + dy * dy), 60);
+        var color = colorInput.value;
+        var rgb = hexToRgb(color);
+        var colorString = 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')';
+        var baseRadius = brush * (0.34 + speed * 0.012);
+        var i;
+
+        for (i = 0; i < Math.max(4, Math.round(splatterAmount * 0.35)); i++) {
+          var angle = Math.random() * Math.PI * 2;
+          var dist = Math.random() * brush * 0.65;
+          drawBlob(
+            x + Math.cos(angle) * dist,
+            y + Math.sin(angle) * dist,
+            baseRadius * (0.34 + Math.random() * 0.75),
+            colorString,
+            opacity * (0.7 + Math.random() * 0.22)
+          );
+        }
+
+        for (i = 0; i < splatterAmount; i++) {
+          var dotAngle = Math.random() * Math.PI * 2;
+          var dotDist = brush * 0.55 + Math.random() * brush * (1.2 + speed * 0.025);
+          drawBlob(
+            x + Math.cos(dotAngle) * dotDist,
+            y + Math.sin(dotAngle) * dotDist,
+            Math.max(1.2, brush * (0.05 + Math.random() * 0.12)),
+            colorString,
+            opacity * (0.4 + Math.random() * 0.28)
+          );
+        }
+
+        var direction = Math.atan2(dy || 0.001, dx || 0.001);
+        for (i = 0; i < Math.max(1, Math.round(splatterAmount * 0.28)); i++) {
+          var dripAngle = direction + (Math.random() - 0.5) * 1.8;
+          var dripLength = brush * (0.7 + Math.random() * 1.8) + speed * 0.4;
+          var dripStartDistance = Math.random() * brush * 0.5;
+          drawDrip(
+            x + Math.cos(dripAngle) * dripStartDistance,
+            y + Math.sin(dripAngle) * dripStartDistance,
+            dripAngle,
+            dripLength,
+            Math.max(1.4, brush * (0.09 + Math.random() * 0.09)),
+            colorString,
+            opacity * (0.38 + Math.random() * 0.25)
+          );
+        }
+
+        ctx.globalAlpha = 1;
+      }
+
+      function stampBrush(x, y, dx, dy) {
+        var brush = Number(brushSizeInput.value);
+        var spread = Number(splatterAmountInput.value) / 100;
+        var opacity = Number(paintOpacityInput.value) / 100;
+        var color = colorInput.value;
+        var steps = 3 + Math.round(spread * 6);
+        var angle = Math.atan2(dy || 0.001, dx || 0.001) + Math.PI * 0.5;
+        var i;
+
+        for (i = 0; i < steps; i++) {
+          var offset = (i - (steps - 1) / 2) * (brush * 0.16);
+          var jitter = (Math.random() - 0.5) * brush * 0.15 * (1 + spread);
+          var ox = Math.cos(angle) * offset + (Math.random() - 0.5) * jitter;
+          var oy = Math.sin(angle) * offset + (Math.random() - 0.5) * jitter;
+          drawBlob(x + ox, y + oy, Math.max(1.4, brush * (0.22 + Math.random() * 0.08)), color, opacity * 0.18);
+        }
+
+        if (lastPoint) {
+          drawSegment(lastPoint.x, lastPoint.y, x, y, brush, color, opacity * 0.34);
+          drawSegment(lastPoint.x, lastPoint.y, x, y, Math.max(1, brush * 0.56), color, opacity * 0.3);
+        } else {
+          drawBlob(x, y, brush * 0.45, color, opacity * 0.34);
+        }
+        ctx.globalAlpha = 1;
+      }
+
+      function stampPencil(x, y, dx, dy) {
+        var point = Number(brushSizeInput.value);
+        var grain = Number(splatterAmountInput.value) / 100;
+        var opacity = Number(paintOpacityInput.value) / 100;
+        var color = colorInput.value;
+        var dust = 2 + Math.round(grain * 10);
+        var i;
+
+        if (lastPoint) {
+          drawSegment(lastPoint.x, lastPoint.y, x, y, Math.max(1, point), color, opacity * 0.2);
+        } else {
+          drawBlob(x, y, Math.max(0.8, point * 0.5), color, opacity * 0.2);
+        }
+
+        for (i = 0; i < dust; i++) {
+          drawBlob(
+            x + (Math.random() - 0.5) * point * 3.2,
+            y + (Math.random() - 0.5) * point * 3.2,
+            0.35 + Math.random() * point * 0.14,
+            color,
+            opacity * (0.06 + grain * 0.12)
+          );
+        }
+        ctx.globalAlpha = 1;
+      }
+
+      function stampPen(x, y, dx, dy) {
+        var nib = Number(brushSizeInput.value);
+        var flow = Number(splatterAmountInput.value) / 100;
+        var opacity = Number(paintOpacityInput.value) / 100;
+        var color = colorInput.value;
+        var speed = Math.sqrt(dx * dx + dy * dy);
+        var lineWidth = Math.max(1, nib * (0.9 + Math.min(speed, 30) * 0.01 * flow));
+
+        if (lastPoint) {
+          drawSegment(lastPoint.x, lastPoint.y, x, y, lineWidth, color, opacity);
+        } else {
+          drawBlob(x, y, Math.max(1, lineWidth * 0.5), color, opacity);
+        }
+
+        if (flow > 0.55 && Math.random() < flow * 0.12) {
+          drawBlob(x, y, Math.max(1, lineWidth * (0.4 + Math.random() * 0.3)), color, opacity);
+        }
+        ctx.globalAlpha = 1;
+      }
+
+      function stampEraser(x, y, dx, dy) {
+        var brush = Number(brushSizeInput.value);
+        var softness = Number(splatterAmountInput.value) / 100;
+        var opacity = Number(paintOpacityInput.value) / 100;
+        var width = brush * (1 + softness * 0.35);
+
+        if (lastPoint) {
+          drawSegment(lastPoint.x, lastPoint.y, x, y, width, background, opacity);
+        } else {
+          drawBlob(x, y, width * 0.5, background, opacity);
+        }
+
+        if (softness > 0.15) {
+          drawBlob(x, y, width * 0.55, background, opacity * (0.2 + softness * 0.2));
+        }
+        ctx.globalAlpha = 1;
+      }
+
+      function stampAtPoint(x, y, dx, dy) {
+        if (selectedTool === 'brush') return stampBrush(x, y, dx, dy);
+        if (selectedTool === 'pencil') return stampPencil(x, y, dx, dy);
+        if (selectedTool === 'pen') return stampPen(x, y, dx, dy);
+        if (selectedTool === 'eraser') return stampEraser(x, y, dx, dy);
+        return stampSplatter(x, y, dx, dy);
+      }
+
+      function paintAlongLine(from, to) {
+        var dx = to.x - from.x;
+        var dy = to.y - from.y;
+        var distance = Math.sqrt(dx * dx + dy * dy);
+        var stepMultiplier = selectedTool === 'splatter' ? 0.32 : selectedTool === 'brush' ? 0.22 : selectedTool === 'eraser' ? 0.2 : 0.14;
+        var step = Math.max(2, Number(brushSizeInput.value) * stepMultiplier);
+        var count = Math.max(1, Math.ceil(distance / step));
+        var i;
+        for (i = 1; i <= count; i++) {
+          var t = i / count;
+          stampAtPoint(from.x + dx * t, from.y + dy * t, dx / count, dy / count);
+        }
+      }
+
+      function handlePointerDown(event) {
+        drawing = true;
+        canvas.setPointerCapture(event.pointerId);
+        var point = getPointerPos(event);
+        lastPoint = point;
+        stampAtPoint(point.x, point.y, 0, 0);
+        setStatus('Painting. Save the PNG when the artwork looks right.');
+        event.preventDefault();
+      }
+
+      function handlePointerMove(event) {
+        if (!drawing || !lastPoint) return;
+        var point = getPointerPos(event);
+        paintAlongLine(lastPoint, point);
+        lastPoint = point;
+        event.preventDefault();
+      }
+
+      function endDrawing(event) {
+        if (!drawing) return;
+        drawing = false;
+        lastPoint = null;
+        try {
+          canvas.releasePointerCapture(event.pointerId);
+        } catch (err) {}
+      }
+
+      function makeSafeName(value, fallback) {
+        var normalized = (value || '').trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+        return normalized || fallback;
+      }
+
+      function getFileName() {
+        return 'raea-fan-art-' + makeSafeName(new Date().toISOString().slice(0, 19), 'fan-art') + '.png';
+      }
+
+      function canvasToBlob() {
+        return new Promise(function (resolve, reject) {
+          canvas.toBlob(function (blob) {
+            if (!blob) {
+              reject(new Error('Unable to render PNG.'));
+              return;
+            }
+            resolve(blob);
+          }, 'image/png');
+        });
+      }
+
+      function downloadBlob(blob, fileName) {
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement('a');
+        link.href = url;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(function () {
+          URL.revokeObjectURL(url);
+        }, 1000);
+      }
+
+      async function saveArt() {
+        var blob = await canvasToBlob();
+        var fileName = getFileName();
+        downloadBlob(blob, fileName);
+        setStatus('Saved ' + fileName + '.');
+        return { blob: blob, fileName: fileName };
+      }
+
+      async function sendArt() {
+        var exportResult = await saveArt();
+        var artist = 'A young artist';
+        var title = 'Fan art';
+        var file = new File([exportResult.blob], exportResult.fileName, { type: 'image/png' });
+        var shareData = {
+          title: 'Fan art for Raea Gragg',
+          text: artist + ' made "' + title + '" for Raea.',
+          files: [file]
+        };
+
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share(shareData);
+          setStatus('Shared from the browser. If the email window did not appear, check the device share sheet.');
+          return;
+        }
+
+        var subject = encodeURIComponent('Fan art from ' + artist);
+        var body = encodeURIComponent(
+          'Hi Raea,\r\n\r\n' +
+          artist + ' made some art for you!\r\n\r\n' +
+          'The image was downloaded as ' + exportResult.fileName + '. Please attach that file to this email before sending.'
+        );
+        var mailtoUrl = 'mailto:' + emailAddress + '?subject=' + subject + '&body=' + body;
+        window.open(mailtoUrl, '_blank', 'noopener');
+        setStatus('Email draft opened. Attach the downloaded PNG and send it to Raea.');
+      }
+
+      document.getElementById('clearArt').addEventListener('click', clearCanvas);
+      document.getElementById('saveArt').addEventListener('click', function () {
+        saveArt().catch(function () {
+          setStatus('The PNG could not be saved. Try again.');
+        });
+      });
+      document.getElementById('sendArt').addEventListener('click', function () {
+        sendArt().catch(function () {
+          setStatus('The share flow could not finish. The canvas is still here, so try Save PNG and email it manually.');
+        });
+      });
+
+      canvas.addEventListener('pointerdown', handlePointerDown);
+      canvas.addEventListener('pointermove', handlePointerMove);
+      canvas.addEventListener('pointerup', endDrawing);
+      canvas.addEventListener('pointercancel', endDrawing);
+      canvas.addEventListener('pointerleave', function (event) {
+        if (!drawing) return;
+        handlePointerMove(event);
+      });
+
+      colorInput.addEventListener('input', function () {
+        colorValue.textContent = colorInput.value.toLowerCase();
+        rememberColor(colorInput.value);
+      });
+
+      swatchesRoot.addEventListener('click', function (event) {
+        var button = event.target.closest('[data-color]');
+        if (!button) return;
+        colorInput.value = button.getAttribute('data-color');
+        colorValue.textContent = colorInput.value.toLowerCase();
+        rememberColor(colorInput.value);
+      });
+
+      brushSizeInput.addEventListener('input', function () {
+        updateSliderOutput(brushSizeInput, 'brushSizeValue', toolConfigs[selectedTool].brush.suffix);
+      });
+      splatterAmountInput.addEventListener('input', function () {
+        updateSliderOutput(splatterAmountInput, 'splatterAmountValue', toolConfigs[selectedTool].detail.suffix);
+      });
+      paintOpacityInput.addEventListener('input', function () {
+        updateSliderOutput(paintOpacityInput, 'paintOpacityValue', toolConfigs[selectedTool].opacity.suffix);
+      });
+      toolButtons.addEventListener('click', function (event) {
+        var button = event.target.closest('[data-tool]');
+        if (!button) return;
+        applyTool(button.getAttribute('data-tool'));
+      });
+
+      window.addEventListener('resize', resizeCanvas);
+
+      applyTool(selectedTool);
+      colorValue.textContent = colorInput.value.toLowerCase();
+      renderSwatches();
+      document.getElementById('year').textContent = new Date().getFullYear();
+      resizeCanvas();
+      setStatus('Ready to paint. Drag across the paper to make splatters.');
+    })();
+  </script>
+</body>
+</html>

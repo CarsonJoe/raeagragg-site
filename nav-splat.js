@@ -169,6 +169,23 @@
       return { x: e.clientX - r.left, y: e.clientY - r.top, inside: e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom };
     }
 
+    function seedInitialSplats() {
+      var r = root.getBoundingClientRect();
+      var count = Math.max(10, Math.min(20, Math.round((r.width * r.height) / 120000)));
+      var i;
+      for (i = 0; i < count; i++) {
+        localAddSplat(
+          Math.random() * Math.max(1, r.width),
+          Math.random() * Math.max(1, r.height),
+          {
+            baseR: 8 + Math.random() * 8,
+            lifetime: 2600 + Math.random() * 1200,
+            alpha: 0.5
+          }
+        );
+      }
+    }
+
     root.addEventListener('pointerenter', function (e) {
       painting = true;
       root.style.userSelect = 'none';
@@ -204,6 +221,8 @@
       localAddSplat(p.x, p.y, { baseR: baseR, lifetime: 6000 + Math.random() * 8000, alpha: 0.5, vx: dx, vy: dy });
       lastX = p.x; lastY = p.y;
     });
+
+    seedInitialSplats();
   }
 
   function drawDrip(dr) {
@@ -290,11 +309,11 @@
 
   // Wire up all nav links with data-hue attributes
   document.querySelectorAll('nav a[data-hue]').forEach(function(link) {
-    var lastSplat = -Infinity;
+    link.__splatLast = link.__splatLast || -Infinity;
     function paintLinkSplatter(immediate) {
       var now = performance.now();
-      if (now - lastSplat < 2200) return;
-      lastSplat = now;
+      if (now - link.__splatLast < 2200) return;
+      link.__splatLast = now;
       link.classList.add('splat-active');
       setTimeout(function() { link.classList.remove('splat-active'); }, 2200);
 
@@ -379,6 +398,7 @@
   if (navKey) {
     document.querySelectorAll('nav a[data-hue]').forEach(function(link) {
       if (navKeyForLink(link) === navKey) {
+        link.__splatLast = performance.now();
         link.classList.add('splat-active');
         setTimeout(function() { link.classList.remove('splat-active'); }, 2200);
         paintLinkInstant(link);

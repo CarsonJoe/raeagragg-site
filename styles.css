@@ -94,6 +94,7 @@ section h2{margin:0;font-family:"EB Garamond",serif;font-size:2.2rem;font-weight
 .mosaic-item.wide{grid-column:span 2}
 .mosaic-item figcaption{padding:10px 12px;font-size:.82rem;color:var(--muted)}
 .about-box,.panel{margin-top:var(--s3);border:1px solid var(--line);background:var(--panel);padding:20px}
+.white-box{background:#fff}
 .panel h3{margin:0;font-size:.76rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}
 .panel ul{margin:10px 0 0;padding-left:18px}
 .panel li{margin:8px 0}
@@ -184,6 +185,9 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .splat-bg{position:relative;isolation:isolate;background:var(--panel);padding:120px 30px;overflow:hidden; margin-top: 0}
 .splat-bg .splat-content{position:relative;z-index:1}
 .splat-bg canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.index-quote-section{padding-top:100px;padding-bottom:100px}
+.quote-splat-card{padding:24px 22px;min-height:220px}
+.quote-splat-card > *{position:relative;z-index:1}
 .books-shelf{display:flex;flex-wrap:wrap;gap:28px 20px;margin-top:var(--s4)}
 .books-shelf .cover-tile{width:200px;flex:0 0 200px}
 .novels-grid{display:flex;flex-direction:row;gap:32px;align-items:flex-start;justify-content:center;margin-top:var(--s4)}
@@ -192,7 +196,7 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .novels-grid .mup-hero-img-wrap img{width:200px;height:305px;object-fit:cover;object-position:center top;display:block}
 .novels-grid .cover-meta{justify-content:center;width:100%}
 .novels-grid .cover-blurb{text-align:left;width:200px}
-.novels-hero .sub,.novels-hero .cover-blurb,.mup-hero-covers .sub{max-width:38ch;margin-left:auto;margin-right:auto}
+.novels-hero .sub,.novels-hero .cover-blurb,.mup-hero-covers .sub{max-width:27ch;margin-left:auto;margin-right:auto}
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 .book-modal{position:fixed;inset:0;background:rgba(20,18,15,.9);z-index:1000;display:none;align-items:center;justify-content:center}

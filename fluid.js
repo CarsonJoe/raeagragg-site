@@ -134,6 +134,16 @@
   var sims = [];
   var tick = 0;
 
+  function clearSim(sim) {
+    sim.f.r.fill(0);  sim.f.g.fill(0);  sim.f.b.fill(0);
+    sim.f.r0.fill(0); sim.f.g0.fill(0); sim.f.b0.fill(0);
+    sim.f.vx.fill(0); sim.f.vy.fill(0);
+    sim.f.vx0.fill(0); sim.f.vy0.fill(0);
+    if (sim.ctx && sim.cv.width && sim.cv.height) {
+      sim.ctx.clearRect(0, 0, sim.cv.width, sim.cv.height);
+    }
+  }
+
   document.querySelectorAll('.card-link').forEach(function (el) {
     var f  = makeFluid();
     var cv = document.createElement('canvas');
@@ -148,7 +158,8 @@
     var sim = {
       el:el, cv:cv, ctx:ctx, f:f,
       active:false, fadeOut:false,
-      mx:-1, my:-1, pmx:-1, pmy:-1
+      mx:-1, my:-1, pmx:-1, pmy:-1,
+      fadeTimer:0, fadeFrame:0
     };
 
     el.addEventListener('mouseenter', function (e) {
@@ -157,14 +168,30 @@
       cv.height = Math.round(rect.height);
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';
+      if (sim.fadeTimer) {
+        clearTimeout(sim.fadeTimer);
+        sim.fadeTimer = 0;
+      }
+      if (sim.fadeFrame) {
+        cancelAnimationFrame(sim.fadeFrame);
+        sim.fadeFrame = 0;
+      }
       sim.active  = true;
       sim.fadeOut = false;
-      cv.style.opacity = '1';
+      clearSim(sim);
+      cv.style.transition = 'none';
+      cv.style.opacity = '0';
       sim.mx  = (e.clientX - rect.left) / rect.width;
       sim.my  = (e.clientY - rect.top)  / rect.height;
       sim.pmx = sim.mx;
       sim.pmy = sim.my;
       placeBlobsFor(sim);
+      cv.offsetWidth;
+      cv.style.transition = 'opacity 1.2s ease';
+      sim.fadeFrame = requestAnimationFrame(function () {
+        sim.fadeFrame = 0;
+        cv.style.opacity = '1';
+      });
     });
 
     el.addEventListener('mousemove', function (e) {
@@ -176,15 +203,19 @@
     });
 
     el.addEventListener('mouseleave', function () {
+      if (sim.fadeFrame) {
+        cancelAnimationFrame(sim.fadeFrame);
+        sim.fadeFrame = 0;
+      }
       sim.fadeOut = true;
       sim.mx = -1; sim.my = -1;
       cv.style.opacity = '0';
-      setTimeout(function () {
+      sim.fadeTimer = setTimeout(function () {
+        sim.fadeTimer = 0;
         if (!sim.fadeOut) return;
         sim.active  = false;
         sim.fadeOut = false;
-        sim.f.r.fill(0);  sim.f.g.fill(0);  sim.f.b.fill(0);
-        sim.f.vx.fill(0); sim.f.vy.fill(0);
+        clearSim(sim);
       }, 700);
     });
 

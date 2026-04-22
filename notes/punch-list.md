@@ -1,7 +1,7 @@
 ## Site Map
 
 `/`
-├─ `index.html`                                Add more stuff, check og
+├─ `index.html`                                Add section about raea speaking
 │  ├─ Home
 │  ├─ Featured MUP covers
 │  ├─ Primary nav
@@ -24,7 +24,7 @@
 │  └─ `Novels`
 │     ├─ YA fiction covers
 │     └─ Synopsis blurbs
-├─ `mup-1-2.html`                               better text, check og, ask squad
+├─ `mup-1-2.html`
 │  ├─ MUP Book I
 │  │  ├─ Story text
 │  │  ├─ Quote
@@ -38,13 +38,13 @@
 ├─ `projects.html`
 │  ├─ Upcoming projects
 │  └─ Private preview links
-├─ `art.html`                                   maybe move around and add soem titles//describe wood burn
+├─ `art.html`                                  add more burns maybe categorize more, add some better descriptions
 │  ├─ Art portfolio
 │  ├─ Mixed media
 │  ├─ Digital
 │  ├─ Ceramics
 │  └─ Photo/story galleries
-├─ `about.html`                                 needs better content. check ok, ask raea
+├─ `about.html`                                clean up styling. flush out. 
 │  ├─ Bio
 │  ├─ Process / current focus
 │  ├─ Photo grid
