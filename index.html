@@ -7,13 +7,13 @@
   <meta name="description" content="Raea Gragg, author and illustrator of the Kirkus-starred MUP graphic novel series." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Shantell+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
   <div class="wrap">
     <header>
-      <div class="logo">Raea Gragg<small>Author • Illustrator • Animator</small></div>
+      <div class="logo">Raea Gragg</div>
       <nav aria-label="Primary">
         <a class="active" href="./index.html#nav=home" data-hue="0.0">Home</a>
         <a href="./books.html#nav=books" data-hue="0.15">Books</a>
@@ -26,18 +26,19 @@
 
     <main>
       <section class="hero" aria-label="Homepage intro">
+        <img class="hero-graphic" src="./assets/ui/landing graphic.psd.png" alt="" aria-hidden="true" draggable="false" />
         <div class="split">
           <div>
-            <h1>Raea Gragg</h1>
-            <p class="lead">Raea Gragg is an author and illustrator whose first graphic novel, <em>MUP</em>, earned a Kirkus star. She makes energetic, accessible stories for reluctant readers and squirmy tweens who need books that move fast and land with heart.</p>
-            <div class="actions">
+            <h1><img src="./assets/ui/hero-primary-text.png" alt="Raea Gragg" draggable="false" /></h1>
+            <p class="lead">Author and illustrator of graphic novels and stories for reluctant readers, squirmy tweens, and dreamers with big imaginations.</p>
+            <div class="options">
               <a class="btn primary" href="./books.html">Explore Books</a>
               <a class="btn secondary" href="./about.html#nav=about" data-hue="0.82">About Raea</a>
             </div>
           </div>
 
           <article class="hero-portrait" aria-label="Raea portrait">
-            <img class="thumb" src="./assets/Real Photos/art-ceramic.jpg" alt="Raea Gragg" style="object-position:top center" />
+            <img class="thumb" src="./notes/8f67ef50-328f-4aa6-8ad7-27589895ad04 (Edited).png" alt="Raea Gragg" style="object-position:top center" draggable="false" />
           </article>
         </div>
 
@@ -51,6 +52,7 @@
       </section>
 
       <section aria-label="Featured video">
+        <p class="video-caption">Inspiring your readers in Sacramento!</p>
         <div class="frame-item">
           <video controls playsinline preload="metadata" style="width:100%">
             <source src="./assets/file.mp4" type="video/mp4" />

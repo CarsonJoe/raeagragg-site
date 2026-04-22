@@ -6,7 +6,7 @@
   <title>Raea Gragg — Interaction Experiments</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Shantell+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
   <style>
     body { position: relative; background-color: var(--paper); }
@@ -67,13 +67,13 @@
       transition: border-color .2s, transform .2s;
     }
     .splat-card:hover { border-color: var(--ink); transform: translateY(-3px); }
-    .splat-card h3 { margin: 0; font-family: "EB Garamond", serif; font-size: 1.3rem; }
+    .splat-card h3 { margin: 0; font-family: "Caveat Brush", cursive; font-size: 1.5rem; line-height: 1.02; }
     .splat-card p  { margin: 6px 0 0; font-size: .82rem; color: var(--muted); }
 
     /* ── Experiment 4: word hover ── */
     .hover-text {
-      font-family: "EB Garamond", serif;
-      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-family: "Caveat Brush", cursive;
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
       line-height: 1.55; max-width: 56ch;
     }
     .hw { cursor: default; display: inline; }
@@ -91,7 +91,7 @@
 
   <div class="wrap">
     <header>
-      <div class="logo">Raea Gragg<small>Author • Illustrator • Animator</small></div>
+      <div class="logo">Raea Gragg</div>
       <nav id="main-nav" aria-label="Primary">
         <a href="./index.html#nav=home" data-hue="0.0">Home</a>
         <a href="./books.html#nav=books" data-hue="0.15">Books</a>
@@ -105,7 +105,7 @@
     <main>
       <section class="hero">
         <span style="font-size:.68rem;text-transform:uppercase;letter-spacing:.18em;color:var(--muted)">Experiments</span>
-        <h1 style="font-family:'EB Garamond',serif;font-size:clamp(2.2rem,6vw,5rem);line-height:.9;font-weight:500;margin:var(--s2) 0 0">Paint Interactions</h1>
+        <h1 style="font-family:'Caveat Brush',cursive;font-size:clamp(2.5rem,6vw,5.4rem);line-height:.92;font-weight:400;margin:var(--s2) 0 0">Paint Interactions</h1>
         <p class="lead">Exploring paint splatters as UI feedback — hover, click, and drift through each experiment below.</p>
         <div class="actions">
           <a class="btn secondary" href="./canvas.html">Canvas page</a>
@@ -116,7 +116,7 @@
       <!-- Experiment 1 -->
       <section class="exp-section">
         <span class="exp-label">Experiment 01 — Navigation hover</span>
-        <h2 style="font-family:'EB Garamond',serif;font-size:2rem;font-weight:500;margin:0">Link Hover</h2>
+        <h2 style="font-family:'Caveat Brush',cursive;font-size:2.3rem;font-weight:400;margin:0">Link Hover</h2>
         <p class="sub">Each link leaves a small paint mark on hover. The header nav above is wired the same way.</p>
         <div class="exp-demo">
           <nav class="splat-nav" id="demo-nav">
@@ -132,7 +132,7 @@
       <!-- Experiment 2 -->
       <section class="exp-section">
         <span class="exp-label">Experiment 02 — Click burst</span>
-        <h2 style="font-family:'EB Garamond',serif;font-size:2rem;font-weight:500;margin:0">Buttons</h2>
+        <h2 style="font-family:'Caveat Brush',cursive;font-size:2.3rem;font-weight:400;margin:0">Buttons</h2>
         <p class="sub">Clicking fires a radial burst of splatters from the point of contact.</p>
         <div class="exp-demo">
           <div class="btn-row">
@@ -147,7 +147,7 @@
       <!-- Experiment 3 -->
       <section class="exp-section">
         <span class="exp-label">Experiment 03 — Card hover fill</span>
-        <h2 style="font-family:'EB Garamond',serif;font-size:2rem;font-weight:500;margin:0">Cards</h2>
+        <h2 style="font-family:'Caveat Brush',cursive;font-size:2.3rem;font-weight:400;margin:0">Cards</h2>
         <p class="sub">Hovering a card seeds gentle splatters inside it while you linger.</p>
         <div class="exp-demo">
           <div class="splat-cards">
@@ -170,7 +170,7 @@
       <!-- Experiment 4 -->
       <section class="exp-section">
         <span class="exp-label">Experiment 04 — Word hover</span>
-        <h2 style="font-family:'EB Garamond',serif;font-size:2rem;font-weight:500;margin:0">Type</h2>
+        <h2 style="font-family:'Caveat Brush',cursive;font-size:2.3rem;font-weight:400;margin:0">Type</h2>
         <p class="sub">Hover individual words to leave micro-splatters as you read.</p>
         <div class="exp-demo">
           <p class="hover-text" id="hover-para">
