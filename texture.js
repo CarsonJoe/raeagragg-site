@@ -1,4 +1,5 @@
 (function () {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var S=256,STEP=4,THICK=2;
   function rnd(x,y){var n=Math.sin(x*91.3+y*757.2)*9301;return n-Math.floor(n);}
   var oc=document.createElement('canvas');oc.width=S;oc.height=S;

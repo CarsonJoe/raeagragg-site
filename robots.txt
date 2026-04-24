@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /canvas.html
+Disallow: /experiments.html
+
+Sitemap: https://www.raeagragg.com/sitemap.xml

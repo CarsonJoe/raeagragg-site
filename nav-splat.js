@@ -1,5 +1,7 @@
 (function () {
   'use strict';
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!document.querySelector('nav a[data-hue]') && !document.querySelector('.splat-hover-draw')) return;
 
   var canvas = document.createElement('canvas');
   canvas.style.cssText = [

@@ -1,5 +1,6 @@
 (function () {
   'use strict';
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   var N    = 48;
   var ITER = 10;
