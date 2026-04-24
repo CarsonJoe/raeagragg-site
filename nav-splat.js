@@ -22,7 +22,7 @@
   window.addEventListener('resize', resize);
 
   function rainbowRgb(h) {
-    var a = 0.48, L = 0.52;
+    var a = 0.24, L = 0.61;
     function ch(n) { var k = (n + h*12) % 12; return L - a*Math.max(-1, Math.min(k-3, 9-k, 1)); }
     return [Math.round(ch(0)*255), Math.round(ch(8)*255), Math.round(ch(4)*255)];
   }

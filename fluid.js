@@ -76,7 +76,7 @@
   }
 
   function rainbowRgb(h) {
-    var a = 0.42, L = 0.58;
+    var a = 0.22, L = 0.66;
     function ch(n) { var k = (n + h*12)%12; return L - a*Math.max(-1, Math.min(k-3, 9-k, 1)); }
     return [ch(0), ch(8), ch(4)];
   }
