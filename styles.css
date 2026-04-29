@@ -65,19 +65,22 @@ a:focus-visible,button:focus-visible{outline:2px solid #d6b252;outline-offset:4p
   position:relative;
   overflow:visible;
 }
-.hero-graphic{
+.hero-doodle{
   position:absolute;
-  left:calc(-1 * (min(200px, 20vw) + 34px));
-  top:clamp(-50px, -15vw, -78px);
-  width:min(350px, 40vw);
-  height:auto;
   pointer-events:none;
+  height:auto;
   z-index:0;
-  opacity:.96;
-  transform:rotate(-4deg);
+  opacity:.92;
 }
-.hero .split > div:first-child{
-  margin-left:40px;
+.hero-doodle--dragonfly{
+  width:clamp(80px,25vw,400px);
+  left:clamp(-140px,-10vw,-60px);
+  top:35.3%;
+}
+.hero-doodle--acorn{
+  width:clamp(200px,22vw,300px);
+  right:clamp(-40px,-2vw,0px);
+  top:2%;
 }
 .hero .split,
 .hero .grid-4{
@@ -273,7 +276,10 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .mup-quote{margin:var(--s3) 0 0;padding-left:var(--s3);border-left:2px solid var(--line);font-family:var(--font-body);font-size:1.05rem;color:var(--ink);max-width:60ch}
 .mup-quote cite{display:block;margin-top:8px;font-style:normal;font-size:.8rem;letter-spacing:.04em;color:var(--muted)}
 
-.mup-hero-covers{margin-top:var(--s6);margin-bottom:var(--s6)}
+.mup-hero-covers{margin-top:var(--s6);margin-bottom:var(--s6);position:relative;overflow:visible}
+.mup-covers-splash{position:absolute;pointer-events:none;width:clamp(180px,22vw,340px);height:auto;top:50%;opacity:.92;z-index:0}
+.mup-covers-splash--left{left:clamp(-60px,2vw,40px);transform:translateY(-50%) rotate(90deg)}
+.mup-covers-splash--right{right:clamp(-60px,2vw,40px);transform:translateY(-50%) rotate(90deg)}
 .mup-hero-covers,.novels-hero{text-align:center}
 .mup-hero-title{text-align:center;margin-bottom:var(--s4)}
 .mup-hero-grid{display:flex;flex-direction:row;gap:32px;align-items:flex-start;justify-content:center}
@@ -311,7 +317,7 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .splat-bg{position:relative;isolation:isolate;background:var(--panel);padding:120px 30px;overflow:hidden; margin-top: 0}
 .splat-bg .splat-content{position:relative;z-index:1}
 .splat-bg canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
-.index-quote-section{padding-top:100px;padding-bottom:100px}
+.index-quote-section{padding-bottom:100px}
 .quote-splat-card{padding:24px 22px;min-height:220px}
 .quote-splat-card > *{position:relative;z-index:1}
 .books-shelf{display:flex;flex-wrap:wrap;gap:28px 20px;margin-top:var(--s4)}
@@ -397,6 +403,9 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .collection-strip figure:focus-visible{outline:2px solid #d6b252;outline-offset:4px;border-color:var(--ink)}
 .collection-strip img{width:100%;height:320px;object-fit:cover;display:block}
 .collection-strip figcaption{margin-top:6px;font-size:.76rem;color:var(--muted)}
+.placeholder-art{cursor:default!important}
+.placeholder-art:hover{border-color:var(--line)!important}
+.placeholder-img{height:320px;background:var(--panel);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
 .photo-grid{margin-top:var(--s3);display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .photo-card{border:1px solid var(--line);background:var(--panel);overflow:hidden}
 .photo-card img{width:100%;aspect-ratio:4/3;object-fit:cover}
@@ -406,6 +415,7 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
 .section-kicker{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
 
 @media (max-width:980px){
+  .hero-doodle,.mup-covers-splash{display:none}
   .grid-4{grid-template-columns:1fr 1fr}
   .split{grid-template-columns:1fr}
   .gallery-hero{grid-template-columns:1fr}
@@ -529,6 +539,7 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
   .concept-grid{grid-template-columns:1fr}
   .collection-strip figure{flex:0 0 82vw}
   .collection-strip img{height:240px}
+  .placeholder-img{height:240px}
   .novels-grid{
     flex-wrap:wrap;
     gap:20px 14px;
