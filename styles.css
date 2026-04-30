@@ -18,7 +18,7 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-html,body{margin:0;padding:0}
+html,body{margin:0;padding:0;overflow-x:clip}
 body{
   font-family:var(--font-body);
   background-color:var(--paper);
@@ -41,6 +41,7 @@ header{
   padding-bottom:var(--s3);
 }
 .logo{
+  display:block;
   font-family:var(--font-display);
   font-size:2.05rem;
   letter-spacing:.01em;
@@ -96,7 +97,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #d6b252;outline-offset:4p
   transform:translateY(10px);
   transform-origin:left center;
 }
-.lead{max-width:60ch;color:var(--ink);margin-top:var(--s3);margin-left:115px;margin-right:40px;transform:rotate(-2deg);letter-spacing:1px}
+.lead{max-width:60ch;color:var(--ink);margin-top:var(--s3);margin-left:115px;margin-right:40px;transform:rotate(-2deg) translateY(-15px);letter-spacing:1px}
 .options{display:flex;flex-wrap:wrap;gap:25px;justify-content:center;transform:scale(.8)}
 .hero{margin-top:var(--s3)}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 17px;border-radius:999px;border:1px solid var(--ink);font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,color .2s ease,background-color .2s ease}
@@ -468,7 +469,7 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
   }
 }
 @media (max-width:700px){
-  .nav-toggle{display:flex}
+  .nav-toggle{display:flex;position:fixed;top:14px;right:22px;z-index:201;background:var(--paper);border-radius:4px;padding:4px}
   header{flex-wrap:wrap;align-items:center}
 
   nav[aria-label="Primary"]{
@@ -481,7 +482,14 @@ footer{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s
   }
 
   nav[aria-label="Primary"].nav-open{
-  	display:flex
+  	display:flex;
+  	position:fixed;
+  	top:0;left:0;right:0;
+  	background:var(--paper);
+  	border-bottom:1px solid var(--line);
+  	padding:58px 22px 14px;
+  	z-index:200;
+  	box-shadow:0 4px 16px rgba(0,0,0,.08)
   }
 
   nav[aria-label="Primary"] a{
